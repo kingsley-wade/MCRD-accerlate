@@ -34,7 +34,7 @@ Observed on 2026-10-28:
 - The remote host is Ubuntu 22.04 x86_64 with eight NVIDIA H100 80 GB devices. At the latest check, each had about 29 GiB free and 52 GiB used by other jobs. Do not terminate or compete aggressively with those jobs.
 - The remote base Python is 3.10, below the project minimum. Python 3.12 and `uv` are available. `uv sync --locked --extra jax-cuda --python 3.12` resolved and began downloading the locked CUDA stack, but made negligible progress for more than ten minutes; the process was stopped. The CUDA environment is incomplete and no new H100 result has been generated.
 - `/mnt/afs` showed about 87 GiB free at the latest check. There are no visible Slurm commands in this account/session.
-- Local GitHub CLI identifies `kingsley-wade`, but its stored authentication token is invalid. The working tree currently has no commits; all project files are untracked. GitHub creation/push cannot proceed until authentication is restored.
+- Initial commit `4dbb014` is pushed to `https://github.com/kingsley-wade/MCRD-accerlate` on `main`. The repository is private, the local working tree is clean, and the first hosted CI run passed on Python 3.11, 3.12, and 3.13.
 - Author metadata now uses `kingsley-wade`; an MIT license, `.gitignore`, CI workflow, templates, contribution guide, backend matrix, LPP behavior guide, and release roadmap have been added locally.
 
 ## Known Bugs and Risks
@@ -53,8 +53,8 @@ Observed on 2026-10-28:
 - **OpenCL comparison has no reference output.** Keep it labeled un-compared until a checkpoint is supplied.
 - **Package names intentionally differ.** The distribution is `mcrd-accel`, the import package is `mcrd_accel`, and the GitHub repository is `MCRD-accerlate`; the README and package metadata document these names.
 - **The license file exists, but the final redistribution audit is still required.** Check the origin and licensing of copied code, data, and images before public push.
-- **CI exists as a workflow file but has not run on GitHub.** Its matrix, build, and dependency sync must be confirmed on a hosted runner.
-- **GitHub authentication is invalid.** Pushing or creating a public repository requires `gh auth login`; do not handle or print tokens in project logs.
+- **The target repository is still private.** Do not change its visibility without explicit instruction; finish the redistribution audit before proposing a public release.
+- **Branch protection is not configured.** Confirm branch and repository settings before treating hosted CI as a merge gate.
 
 ## Development Phases
 
@@ -92,12 +92,12 @@ Goal: make the actual code migration easy to understand and reproduce.
 - [x] C4. Add a Python 3.11/3.12/3.13 GitHub Actions workflow for sync, tests, spec validation, compile checks, and build.
 - [x] C5. Add issue forms, pull request template, and `CONTRIBUTING.md`.
 - [x] C6. Document the repository slug (`kingsley-wade/MCRD-accerlate`), distribution name (`mcrd-accel`), supported Python versions (3.11–3.13 in CI), and public API import path (`mcrd_accel`).
-- [ ] C7. Run CI on GitHub after authentication is restored. Fix any wheel, Python matrix, or CUDA-extra resolution issues exposed by CI.
+- [x] C7. Run CI on GitHub after authentication is restored. The first push passed Python 3.11, 3.12, and 3.13 test/spec/compile/build jobs.
 - [x] C8. Confirm the source distribution and wheel contain the package and license, and install the wheel outside the checkout. Local build/install smoke passed for the current `0.1.0` metadata; package contents were inspected on 2026-10-28.
 - [ ] C9. Review every checked-in report and image. Keep only artifacts that are small, attributable, redistributable, and useful to a portfolio reviewer.
 - [ ] C10. Add a concise changelog/release note and (optionally) `CITATION.cff` once maintainer and citation details are known.
-- [ ] C11. Create the first reviewed Git commit. The repository currently has no commits and all files are untracked.
-- [ ] C12. Authenticate `gh`, push the initial commit to the existing private repository, then verify the README and hosted CI. Make the repository public only after the redistribution audit and release gates pass.
+- [x] C11. Create the first reviewed Git commit (`4dbb014`); local working tree is clean.
+- [x] C12. Authenticate `gh`, push the initial commit to the existing private repository, and verify the `main` branch plus hosted CI. Keep the repository private until the redistribution audit and public release gates pass.
 
 **Acceptance:** public repository has a clean clone, visible green CI, accurate ownership/license, useful contribution instructions, and a release page whose claims match evidence.
 
@@ -155,5 +155,5 @@ For the documented LPP default connected-component filter, install `uv sync --ex
 
 - GitHub username provided: `kingsley-wade`.
 - Canonical repository slug is `kingsley-wade/MCRD-accerlate`; the private repository exists and is empty, awaiting its first push.
-- GitHub CLI credentials currently fail validation; the user must re-authenticate before push/release operations.
+- GitHub CLI authentication is active after user device authorization; the initial push is complete.
 - No MATLAB golden fixtures, original OpenCL checkpoint, RTX 5090, or Ascend C device are currently available in this workspace/session.

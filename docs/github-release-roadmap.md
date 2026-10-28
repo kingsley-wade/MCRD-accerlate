@@ -20,9 +20,9 @@ The repository already contains a useful foundation:
 
 The following release blockers remain:
 
-- Git has no commits yet, so there is no reviewable project history or release baseline.
-- A `.gitignore`, MIT `LICENSE`, initial GitHub Actions workflow, issue/PR templates, and contribution guide now exist locally, but CI has not yet run on GitHub.
-- `pyproject.toml` uses `kingsley-wade` as author, declares `kingsley-wade/MCRD-accerlate` URLs, and distinguishes the `mcrd-accel` distribution from the `mcrd_accel` import package. The target repo exists as an empty private repository.
+- Initial commit `4dbb014` is pushed to `kingsley-wade/MCRD-accerlate` on `main`; the repository is private and the local tree is clean.
+- The GitHub Actions matrix passed on Python 3.11, 3.12, and 3.13. Branch protection is not configured yet.
+- `pyproject.toml` uses `kingsley-wade` as author, declares the target repository URLs, and distinguishes the `mcrd-accel` distribution from the `mcrd_accel` import package.
 - `docs/backend-matrix.md` and `docs/lpp-parity.md` describe current behavior; MATLAB parity and fresh H100 provenance remain open evidence gaps.
 - `reports/s1_pde_smoke_h100.json` must have its provenance verified before it is presented as hardware evidence. The local host for the current work is Apple Silicon.
 - `reports/opencl_comparison.json` records that no OpenCL reference was supplied; it is not a parity result.
@@ -37,7 +37,7 @@ The following release blockers remain:
 - At the latest check, every H100 had about 29 GiB free and about 52 GiB allocated by existing processes. Do not stop or interfere with those jobs; run only a small test after checking memory again.
 - Base Python is 3.10 and is below this project's `requires-python >=3.11`. Python 3.12 and `uv` are available. The full project is uploaded at `/mnt/afs/gmt/DNA-p53-MCRD-accelerated`.
 - `uv sync --locked --extra jax-cuda --python 3.12` resolved packages and started downloading, then stalled for over ten minutes with negligible cache growth. The install process was stopped; no GPU test ran. `/mnt/afs` had about 87 GiB available. There were no `sbatch`, `srun`, or `sinfo` commands in the inspected environment.
-- Local `gh` identifies the username `kingsley-wade`, but its stored GitHub token is invalid. Local preparation can continue; repository creation, pushing, and release publication require GitHub re-authentication.
+- GitHub CLI is authenticated as `kingsley-wade`; the first commit has been pushed. The repository remains private.
 
 ## Release Levels
 
@@ -62,9 +62,9 @@ These tasks should be completed before the first public push.
 - [x] Set the supplied GitHub username as author and add the intended repository URLs, Python classifiers, and package metadata to `pyproject.toml`.
 - [x] Add the actual `LICENSE` file matching the declared MIT license. The final audit of source-code and image redistribution rights remains a publication gate.
 - [ ] Decide which generated artifacts belong in Git. Keep small, provenance-rich examples; exclude caches and machine-specific output that cannot be reproduced. Label hardware-specific artifacts with verified device provenance.
-- [ ] Complete the redistribution and provenance audit before pushing. The local scan found no credential patterns or private local absolute paths; copied source/data/image rights still need confirmation.
-- [ ] Create an initial commit that contains only reviewed project files. Confirm `git status --short` is clean afterward.
-- [ ] Create the GitHub repository and push the initial branch. Configure the default branch and protect it after CI is established.
+- [x] Scan the initial commit for credential patterns and private local absolute paths. The audit found none; copied source/data/image rights still need confirmation before making the repository public.
+- [x] Create the initial commit from the reviewed project files; confirm `git status --short` is clean.
+- [x] Push `main` to the existing private GitHub repository and verify the remote commit plus hosted CI. Branch protection and any visibility change remain separate follow-up decisions.
 
 **Acceptance gate:** a fresh clone contains no virtual environment or cache; `git status` is clean; licensing and project ownership are explicit; all checked-in results have traceable origins.
 
@@ -83,7 +83,7 @@ These tasks should be completed before the first public push.
 
 ### Continuous Integration and Repository Templates
 
-- [x] Add a GitHub Actions CI workflow for Python 3.11, 3.12, and 3.13, including dependency sync, tests, spec validation, compile checks, and package build. Hosted CI has not run yet and remains a release gate.
+- [x] Add a GitHub Actions CI workflow for Python 3.11, 3.12, and 3.13, including dependency sync, tests, spec validation, compile checks, and package build. The first hosted run passed on all three versions.
 - [ ] Add lint and formatting checks, then run them locally and fix all reported issues before making CI required.
 - [ ] Add a lightweight dependency/security audit suitable for a scientific Python project. Document the policy for updating `uv.lock`.
 - [x] Add issue templates for bug reports and feature requests, plus a pull request template covering tests, numerical impact, and backend/device evidence.
