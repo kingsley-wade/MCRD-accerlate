@@ -1,0 +1,62 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mcrd-accel"
+version = "0.1.0"
+description = "High-performance DNA-p53 mass-conserving reaction-diffusion solver and LPP image analysis."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "kingsley-wade" }]
+license = { text = "MIT" }
+keywords = ["reaction-diffusion", "scientific-computing", "jax", "image-analysis"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "numpy>=1.26",
+]
+
+[project.urls]
+Homepage = "https://github.com/kingsley-wade/MCRD-accerlate"
+Repository = "https://github.com/kingsley-wade/MCRD-accerlate"
+Issues = "https://github.com/kingsley-wade/MCRD-accerlate/issues"
+
+[project.optional-dependencies]
+jax = [
+    "jax>=0.4.30",
+    "jaxlib>=0.4.30",
+]
+jax-metal = [
+    "jax>=0.4.30",
+    "jax-metal>=0.0.7",
+]
+jax-cuda = [
+    "jax[cuda12]>=0.4.30",
+]
+analysis = [
+    "scipy>=1.12",
+    "matplotlib>=3.8",
+    "Pillow>=10.0",
+]
+test = [
+    "pytest>=8.0",
+]
+dev = [
+    "mcrd-accel[jax,analysis,test]",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mcrd_accel"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+filterwarnings = ["error"]

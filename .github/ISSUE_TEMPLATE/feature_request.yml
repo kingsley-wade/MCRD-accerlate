@@ -1,0 +1,26 @@
+name: Feature request
+description: Propose a focused improvement
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: Problem or research need
+      description: What task is difficult or unsupported today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe the expected API, output, or workflow.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation expectations
+      description: What correctness, numerical, or performance evidence would establish success?
+    validations:
+      required: true

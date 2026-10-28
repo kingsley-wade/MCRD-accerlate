@@ -1,0 +1,443 @@
+{
+  "schema_version": 2,
+  "profile": "explicit_smoke",
+  "case_families": {
+    "heat": "parabolic",
+    "poisson": "elliptic",
+    "wave": "hyperbolic",
+    "p53_mcrd": "scientific reaction-diffusion workload"
+  },
+  "cases": {
+    "heat": {
+      "16": {
+        "grid": {
+          "Nx": 16,
+          "Ny": 16,
+          "dx": 0.0625,
+          "dy": 0.0625,
+          "backend": "numpy",
+          "dtype": "float64",
+          "seed": 0
+        },
+        "steps": 20,
+        "dt": 1e-05,
+        "mode_max_error": 2.7755575615628914e-16,
+        "mass_drift": -5.684341886080802e-14,
+        "stability_number": 0.0005120000000000001,
+        "runtime_seconds": 0.00032225006725639105
+      },
+      "32": {
+        "grid": {
+          "Nx": 32,
+          "Ny": 32,
+          "dx": 0.03125,
+          "dy": 0.03125,
+          "backend": "numpy",
+          "dtype": "float64",
+          "seed": 0
+        },
+        "steps": 20,
+        "dt": 1e-05,
+        "mode_max_error": 8.881784197001252e-16,
+        "mass_drift": 0.0,
+        "stability_number": 0.0020480000000000003,
+        "runtime_seconds": 0.00032524997368454933
+      }
+    },
+    "poisson": {
+      "16": {
+        "grid": {
+          "Nx": 16,
+          "Ny": 16,
+          "dx": 0.0625,
+          "dy": 0.0625,
+          "backend": "numpy",
+          "dtype": "float64",
+          "seed": 0
+        },
+        "rhs_mean": 4.163336342344337e-17,
+        "relative_residual": 9.238321379906574e-07,
+        "iterations": 28,
+        "converged": true,
+        "runtime_seconds": 0.071154750068672
+      },
+      "32": {
+        "grid": {
+          "Nx": 32,
+          "Ny": 32,
+          "dx": 0.03125,
+          "dy": 0.03125,
+          "backend": "numpy",
+          "dtype": "float64",
+          "seed": 0
+        },
+        "rhs_mean": 3.469446951953614e-18,
+        "relative_residual": 5.739888360213269e-07,
+        "iterations": 58,
+        "converged": true,
+        "runtime_seconds": 0.0018037500558421016
+      }
+    },
+    "wave": {
+      "16": {
+        "grid": {
+          "Nx": 16,
+          "Ny": 16,
+          "dx": 0.0625,
+          "dy": 0.0625,
+          "backend": "numpy",
+          "dtype": "float64",
+          "seed": 0
+        },
+        "steps": 20,
+        "dt": 1e-05,
+        "cfl_number": 9.05096679918781e-05,
+        "mode_max_error": 2.0067281170099704e-14,
+        "energy_relative_drift": -1.2315678229724764e-08,
+        "snapshot_steps": [
+          5,
+          10,
+          15,
+          20
+        ],
+        "mass_drift": -9.094947017729282e-13,
+        "runtime_seconds": 0.0002770830178633332
+      },
+      "32": {
+        "grid": {
+          "Nx": 32,
+          "Ny": 32,
+          "dx": 0.03125,
+          "dy": 0.03125,
+          "backend": "numpy",
+          "dtype": "float64",
+          "seed": 0
+        },
+        "steps": 20,
+        "dt": 1e-05,
+        "cfl_number": 0.0001810193359837562,
+        "mode_max_error": 1.6431300764452317e-14,
+        "energy_relative_drift": -1.243515277329522e-08,
+        "snapshot_steps": [
+          5,
+          10,
+          15,
+          20
+        ],
+        "mass_drift": -7.958078640513122e-13,
+        "runtime_seconds": 0.0003285000566393137
+      }
+    },
+    "p53_mcrd": {
+      "conservation": {
+        "config": {
+          "kd": 0.36,
+          "k1": 1.35,
+          "b": 8.955223880597014,
+          "k2": 2.0,
+          "rho": 9.0,
+          "cv": 0.1072,
+          "beta": 19.580000000000002,
+          "Du": 0.0085,
+          "Dv": 0.17,
+          "Nx": 32,
+          "Ny": 32,
+          "dx": 0.03125,
+          "dy": 0.03125,
+          "dt": 1e-05,
+          "n_steps": 20,
+          "integrator": "explicit_euler",
+          "boundary": "periodic",
+          "dtype": "float64",
+          "backend": "numpy",
+          "seed": 0,
+          "snapshot_stride": 0,
+          "reaction_model": {
+            "name": "p53_mcrd",
+            "stoichiometry": [
+              1.0,
+              -1.0
+            ],
+            "conserved_weights": [
+              1.0,
+              1.0
+            ],
+            "parameters": [
+              0.36,
+              1.35,
+              8.955223880597014,
+              2.0,
+              9.0,
+              0.1072,
+              19.580000000000002
+            ]
+          }
+        },
+        "initial_mass": 26099.794303470095,
+        "final_mass": 26099.794303470095,
+        "max_drift": 0.0,
+        "mean_drift": 0.0,
+        "all_finite": true,
+        "n_checkpoints": 2,
+        "metadata": {
+          "backend": "numpy",
+          "dtype": "float64",
+          "integrator": "explicit_euler",
+          "seed": 0,
+          "n_steps": 20,
+          "dt": 1e-05,
+          "final_time": 0.0002,
+          "Nx": 32,
+          "Ny": 32,
+          "dx": 0.03125,
+          "dy": 0.03125,
+          "initial_mass": 26099.794303470095,
+          "final_mass": 26099.794303470095,
+          "reaction_model": {
+            "name": "p53_mcrd",
+            "stoichiometry": [
+              1.0,
+              -1.0
+            ],
+            "conserved_weights": [
+              1.0,
+              1.0
+            ],
+            "parameters": [
+              0.36,
+              1.35,
+              8.955223880597014,
+              2.0,
+              9.0,
+              0.1072,
+              19.580000000000002
+            ]
+          }
+        }
+      },
+      "spatial": {
+        "study_type": "spatial",
+        "cases": [
+          {
+            "grid_size": 16,
+            "dt": 1e-05,
+            "error_norm": 0.02640407580617829,
+            "observed_order": null,
+            "conservation_drift": 0.0,
+            "runtime_seconds": 0.0007789134979248047,
+            "peak_memory_bytes": 20480,
+            "status": "completed"
+          },
+          {
+            "grid_size": 32,
+            "dt": 1e-05,
+            "error_norm": NaN,
+            "observed_order": null,
+            "conservation_drift": 0.0,
+            "runtime_seconds": 0.0009386539459228516,
+            "peak_memory_bytes": 81920,
+            "status": "completed"
+          }
+        ],
+        "reference_case": {
+          "grid_size": 32,
+          "dt": 1e-05,
+          "error_norm": NaN,
+          "observed_order": null,
+          "conservation_drift": 0.0,
+          "runtime_seconds": 0.0009386539459228516,
+          "peak_memory_bytes": 81920,
+          "status": "completed"
+        },
+        "config": {
+          "kd": 0.36,
+          "k1": 1.35,
+          "b": 8.955223880597014,
+          "k2": 2.0,
+          "rho": 9.0,
+          "cv": 0.1072,
+          "beta": 19.580000000000002,
+          "Du": 0.0085,
+          "Dv": 0.17,
+          "Nx": 32,
+          "Ny": 32,
+          "dx": 0.03125,
+          "dy": 0.03125,
+          "dt": 1e-05,
+          "n_steps": 20,
+          "integrator": "explicit_euler",
+          "boundary": "periodic",
+          "dtype": "float64",
+          "backend": "numpy",
+          "seed": 0,
+          "snapshot_stride": 0,
+          "reaction_model": {
+            "name": "p53_mcrd",
+            "stoichiometry": [
+              1.0,
+              -1.0
+            ],
+            "conserved_weights": [
+              1.0,
+              1.0
+            ],
+            "parameters": [
+              0.36,
+              1.35,
+              8.955223880597014,
+              2.0,
+              9.0,
+              0.1072,
+              19.580000000000002
+            ]
+          }
+        }
+      },
+      "temporal": {
+        "study_type": "temporal",
+        "cases": [
+          {
+            "grid_size": 32,
+            "dt": 1e-05,
+            "error_norm": 9.502013085557369e-05,
+            "observed_order": null,
+            "conservation_drift": 0.0,
+            "runtime_seconds": 0.0008449554443359375,
+            "peak_memory_bytes": 81920,
+            "status": "completed"
+          },
+          {
+            "grid_size": 32,
+            "dt": 5e-06,
+            "error_norm": NaN,
+            "observed_order": null,
+            "conservation_drift": 0.0,
+            "runtime_seconds": 0.001661062240600586,
+            "peak_memory_bytes": 81920,
+            "status": "completed"
+          }
+        ],
+        "reference_case": {
+          "grid_size": 32,
+          "dt": 5e-06,
+          "error_norm": NaN,
+          "observed_order": null,
+          "conservation_drift": 0.0,
+          "runtime_seconds": 0.001661062240600586,
+          "peak_memory_bytes": 81920,
+          "status": "completed"
+        },
+        "config": {
+          "kd": 0.36,
+          "k1": 1.35,
+          "b": 8.955223880597014,
+          "k2": 2.0,
+          "rho": 9.0,
+          "cv": 0.1072,
+          "beta": 19.580000000000002,
+          "Du": 0.0085,
+          "Dv": 0.17,
+          "Nx": 32,
+          "Ny": 32,
+          "dx": 0.03125,
+          "dy": 0.03125,
+          "dt": 1e-05,
+          "n_steps": 20,
+          "integrator": "explicit_euler",
+          "boundary": "periodic",
+          "dtype": "float64",
+          "backend": "numpy",
+          "seed": 0,
+          "snapshot_stride": 0,
+          "reaction_model": {
+            "name": "p53_mcrd",
+            "stoichiometry": [
+              1.0,
+              -1.0
+            ],
+            "conserved_weights": [
+              1.0,
+              1.0
+            ],
+            "parameters": [
+              0.36,
+              1.35,
+              8.955223880597014,
+              2.0,
+              9.0,
+              0.1072,
+              19.580000000000002
+            ]
+          }
+        }
+      },
+      "stability": {
+        "cases": [
+          {
+            "dt": 1e-05,
+            "status": "stable",
+            "first_failure_step": null,
+            "first_failure_time": null,
+            "conservation_drift": 1.393872597152241e-16,
+            "runtime_seconds": 0.0009779930114746094
+          },
+          {
+            "dt": 5e-06,
+            "status": "stable",
+            "first_failure_step": null,
+            "first_failure_time": null,
+            "conservation_drift": 1.393872597152241e-16,
+            "runtime_seconds": 0.0018892288208007812
+          }
+        ],
+        "estimated_stable_interval": [
+          5e-06,
+          1e-05
+        ],
+        "config": {
+          "kd": 0.36,
+          "k1": 1.35,
+          "b": 8.955223880597014,
+          "k2": 2.0,
+          "rho": 9.0,
+          "cv": 0.1072,
+          "beta": 19.580000000000002,
+          "Du": 0.0085,
+          "Dv": 0.17,
+          "Nx": 32,
+          "Ny": 32,
+          "dx": 0.03125,
+          "dy": 0.03125,
+          "dt": 1e-05,
+          "n_steps": 20,
+          "integrator": "explicit_euler",
+          "boundary": "periodic",
+          "dtype": "float64",
+          "backend": "numpy",
+          "seed": 0,
+          "snapshot_stride": 0,
+          "reaction_model": {
+            "name": "p53_mcrd",
+            "stoichiometry": [
+              1.0,
+              -1.0
+            ],
+            "conserved_weights": [
+              1.0,
+              1.0
+            ],
+            "parameters": [
+              0.36,
+              1.35,
+              8.955223880597014,
+              2.0,
+              9.0,
+              0.1072,
+              19.580000000000002
+            ]
+          }
+        }
+      }
+    }
+  }
+}

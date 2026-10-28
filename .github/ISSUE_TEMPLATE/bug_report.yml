@@ -1,0 +1,34 @@
+name: Bug report
+description: Report a reproducible defect
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: State the observed behavior and expected behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal reproduction
+      description: Include the smallest code/configuration that reproduces the issue.
+      render: python
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Python, package version or revision, OS, backend, device, and runtime versions.
+    validations:
+      required: true
+  - type: textarea
+    id: numerical
+    attributes:
+      label: Numerical evidence
+      description: Include relevant tolerances, invariants, logs, or report artifacts.
+    validations:
+      required: false

@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-10-26T15:09:34.973954+00:00",
+  "git_revision": null,
+  "host": {
+    "platform": "macOS-26.0.1-arm64-arm-64bit",
+    "machine": "arm64",
+    "python": "3.12.12",
+    "numpy": "2.5.4",
+    "jax": "0.11.2"
+  },
+  "records": [
+    {
+      "backend": "numpy",
+      "reaction_model": "p53_mcrd",
+      "setup_seconds": 0.0,
+      "warmup_count": 2,
+      "n_steps": 100,
+      "grid": "64x64",
+      "shape": [
+        64,
+        64
+      ],
+      "dtype": "float32",
+      "config": {
+        "kd": 0.36,
+        "k1": 1.35,
+        "b": 8.955223880597014,
+        "k2": 2.0,
+        "rho": 9.0,
+        "cv": 0.1072,
+        "beta": 19.580000000000002,
+        "Du": 0.0085,
+        "Dv": 0.17,
+        "Nx": 64,
+        "Ny": 64,
+        "dx": 0.2,
+        "dy": 0.2,
+        "dt": 0.02,
+        "n_steps": 100,
+        "integrator": "explicit_euler",
+        "boundary": "periodic",
+        "dtype": "float32",
+        "backend": "numpy",
+        "seed": 0,
+        "snapshot_stride": 0
+      },
+      "mean_time": 0.048168579737345375,
+      "std_time": 0.00017747316317958932,
+      "steps_per_second": 2076.042111793249,
+      "grid_steps_per_second": 8503468.489905149,
+      "peak_memory_bytes": 282936,
+      "peak_memory_method": "tracemalloc_host_allocations",
+      "mass_drift": 6.519913704791288e-09
+    },
+    {
+      "backend": "jax-cpu",
+      "reaction_model": "p53_mcrd",
+      "setup_seconds": 0.8338737487792969,
+      "warmup_count": 2,
+      "n_steps": 100,
+      "grid": "64x64",
+      "shape": [
+        64,
+        64
+      ],
+      "dtype": "float32",
+      "config": {
+        "kd": 0.36,
+        "k1": 1.35,
+        "b": 8.955223880597014,
+        "k2": 2.0,
+        "rho": 9.0,
+        "cv": 0.1072,
+        "beta": 19.580000000000002,
+        "Du": 0.0085,
+        "Dv": 0.17,
+        "Nx": 64,
+        "Ny": 64,
+        "dx": 0.2,
+        "dy": 0.2,
+        "dt": 0.02,
+        "n_steps": 100,
+        "integrator": "explicit_euler",
+        "boundary": "periodic",
+        "dtype": "float32",
+        "backend": "jax-cpu",
+        "seed": 0,
+        "snapshot_stride": 0
+      },
+      "mean_time": 0.0017329057057698567,
+      "std_time": 7.439177582037433e-05,
+      "steps_per_second": 57706.54437055721,
+      "grid_steps_per_second": 236366005.74180233,
+      "peak_memory_bytes": 66840,
+      "peak_memory_method": "tracemalloc_host_allocations",
+      "mass_drift": 0.0
+    }
+  ]
+}

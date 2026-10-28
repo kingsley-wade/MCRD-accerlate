@@ -1,0 +1,334 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-10-26T15:13:20.766120+00:00",
+  "host": {
+    "platform": "macOS-26.0.1-arm64-arm-64bit",
+    "machine": "arm64"
+  },
+  "profile": "bounded_local_m4",
+  "spatial": {
+    "study_type": "spatial",
+    "cases": [
+      {
+        "grid_size": 64,
+        "dt": 4.382694468778722e-08,
+        "error_norm": 0.013109412975609303,
+        "observed_order": 1.0218179102968288,
+        "conservation_drift": 1.2340937182439653e-07,
+        "runtime_seconds": 0.028136014938354492,
+        "peak_memory_bytes": 163840,
+        "status": "completed"
+      },
+      {
+        "grid_size": 128,
+        "dt": 4.382694468778722e-08,
+        "error_norm": 0.006456325296312571,
+        "observed_order": 1.0470406612638992,
+        "conservation_drift": 1.2370611669931287e-07,
+        "runtime_seconds": 0.007703065872192383,
+        "peak_memory_bytes": 655360,
+        "status": "completed"
+      },
+      {
+        "grid_size": 256,
+        "dt": 4.382694468778722e-08,
+        "error_norm": 0.003124602371826768,
+        "observed_order": 1.0995877365778177,
+        "conservation_drift": 1.2305670182218943e-07,
+        "runtime_seconds": 0.02887415885925293,
+        "peak_memory_bytes": 2621440,
+        "status": "completed"
+      },
+      {
+        "grid_size": 512,
+        "dt": 4.382694468778722e-08,
+        "error_norm": 0.0014580951537936926,
+        "observed_order": 1.2226100812600742,
+        "conservation_drift": 1.2167541118156643e-07,
+        "runtime_seconds": 0.11505365371704102,
+        "peak_memory_bytes": 10485760,
+        "status": "completed"
+      },
+      {
+        "grid_size": 1024,
+        "dt": 4.382694468778722e-08,
+        "error_norm": 0.0006248036515899003,
+        "observed_order": 1.5859078361761652,
+        "conservation_drift": 1.2065035715854703e-07,
+        "runtime_seconds": 0.6575429439544678,
+        "peak_memory_bytes": 41943040,
+        "status": "completed"
+      },
+      {
+        "grid_size": 2048,
+        "dt": 4.382694468778722e-08,
+        "error_norm": 0.00020813145965803415,
+        "observed_order": null,
+        "conservation_drift": 1.292419077737378e-07,
+        "runtime_seconds": 2.0207180976867676,
+        "peak_memory_bytes": 167772160,
+        "status": "completed"
+      },
+      {
+        "grid_size": 4096,
+        "dt": 4.382694468778722e-08,
+        "error_norm": 0.0,
+        "observed_order": null,
+        "conservation_drift": 1.0664210575993612e-07,
+        "runtime_seconds": 8.475695133209229,
+        "peak_memory_bytes": 671088640,
+        "status": "completed"
+      }
+    ],
+    "reference_case": {
+      "grid_size": 4096,
+      "dt": 4.382694468778722e-08,
+      "error_norm": NaN,
+      "observed_order": null,
+      "conservation_drift": 1.0664210575993612e-07,
+      "runtime_seconds": 8.475695133209229,
+      "peak_memory_bytes": 671088640,
+      "status": "completed"
+    },
+    "config": {
+      "kd": 0.36,
+      "k1": 1.35,
+      "b": 8.955223880597014,
+      "k2": 2.0,
+      "rho": 9.0,
+      "cv": 0.1072,
+      "beta": 19.580000000000002,
+      "Du": 0.0085,
+      "Dv": 0.17,
+      "Nx": 4096,
+      "Ny": 4096,
+      "dx": 0.000244140625,
+      "dy": 0.000244140625,
+      "dt": 4.382694468778722e-08,
+      "n_steps": 8,
+      "integrator": "explicit_euler",
+      "boundary": "periodic",
+      "dtype": "float32",
+      "backend": "numpy",
+      "seed": 0,
+      "snapshot_stride": 0,
+      "reaction_model": {
+        "name": "p53_mcrd",
+        "stoichiometry": [
+          1.0,
+          -1.0
+        ],
+        "conserved_weights": [
+          1.0,
+          1.0
+        ],
+        "parameters": [
+          0.36,
+          1.35,
+          8.955223880597014,
+          2.0,
+          9.0,
+          0.1072,
+          19.580000000000002
+        ]
+      }
+    }
+  },
+  "temporal": {
+    "study_type": "temporal",
+    "cases": [
+      {
+        "grid_size": 64,
+        "dt": 0.0001,
+        "error_norm": 0.006896802689880133,
+        "observed_order": 1.2221455606054439,
+        "conservation_drift": 1.4427820243095568e-09,
+        "runtime_seconds": 0.0017349720001220703,
+        "peak_memory_bytes": 163840,
+        "status": "completed"
+      },
+      {
+        "grid_size": 64,
+        "dt": 5e-05,
+        "error_norm": 0.0029562783893197775,
+        "observed_order": 1.5867661558418251,
+        "conservation_drift": 1.972410868676356e-09,
+        "runtime_seconds": 0.006973981857299805,
+        "peak_memory_bytes": 163840,
+        "status": "completed"
+      },
+      {
+        "grid_size": 64,
+        "dt": 2.5e-05,
+        "error_norm": 0.0009841949213296175,
+        "observed_order": null,
+        "conservation_drift": 2.5568289038397206e-10,
+        "runtime_seconds": 0.0076160430908203125,
+        "peak_memory_bytes": 163840,
+        "status": "completed"
+      },
+      {
+        "grid_size": 64,
+        "dt": 1.25e-05,
+        "error_norm": 0.0,
+        "observed_order": null,
+        "conservation_drift": 1.4062558971118464e-09,
+        "runtime_seconds": 0.02199578285217285,
+        "peak_memory_bytes": 163840,
+        "status": "completed"
+      }
+    ],
+    "reference_case": {
+      "grid_size": 64,
+      "dt": 1.25e-05,
+      "error_norm": NaN,
+      "observed_order": null,
+      "conservation_drift": 1.4062558971118464e-09,
+      "runtime_seconds": 0.02199578285217285,
+      "peak_memory_bytes": 163840,
+      "status": "completed"
+    },
+    "config": {
+      "kd": 0.36,
+      "k1": 1.35,
+      "b": 8.955223880597014,
+      "k2": 2.0,
+      "rho": 9.0,
+      "cv": 0.1072,
+      "beta": 19.580000000000002,
+      "Du": 0.0085,
+      "Dv": 0.17,
+      "Nx": 64,
+      "Ny": 64,
+      "dx": 0.015625,
+      "dy": 0.015625,
+      "dt": 0.0001,
+      "n_steps": 8,
+      "integrator": "explicit_euler",
+      "boundary": "periodic",
+      "dtype": "float32",
+      "backend": "numpy",
+      "seed": 0,
+      "snapshot_stride": 0,
+      "reaction_model": {
+        "name": "p53_mcrd",
+        "stoichiometry": [
+          1.0,
+          -1.0
+        ],
+        "conserved_weights": [
+          1.0,
+          1.0
+        ],
+        "parameters": [
+          0.36,
+          1.35,
+          8.955223880597014,
+          2.0,
+          9.0,
+          0.1072,
+          19.580000000000002
+        ]
+      }
+    }
+  },
+  "stability": {
+    "cases": [
+      {
+        "dt": 5e-05,
+        "status": "stable",
+        "first_failure_step": null,
+        "first_failure_time": null,
+        "conservation_drift": 6.94836517682043e-07,
+        "runtime_seconds": 0.11875200271606445
+      },
+      {
+        "dt": 0.0001,
+        "status": "stable",
+        "first_failure_step": null,
+        "first_failure_time": null,
+        "conservation_drift": 9.812744071664871e-08,
+        "runtime_seconds": 0.05939507484436035
+      },
+      {
+        "dt": 0.0002,
+        "status": "stable",
+        "first_failure_step": null,
+        "first_failure_time": null,
+        "conservation_drift": 4.145715436940119e-09,
+        "runtime_seconds": 0.031091928482055664
+      },
+      {
+        "dt": 0.0004,
+        "status": "bound_violation",
+        "first_failure_step": 29,
+        "first_failure_time": 0.011600000000000001,
+        "conservation_drift": 3.460850551983051e-09,
+        "runtime_seconds": 0.006977081298828125
+      },
+      {
+        "dt": 0.0008,
+        "status": "bound_violation",
+        "first_failure_step": 4,
+        "first_failure_time": 0.0032,
+        "conservation_drift": 5.387603761662269e-10,
+        "runtime_seconds": 0.0009169578552246094
+      },
+      {
+        "dt": 0.0016,
+        "status": "bound_violation",
+        "first_failure_step": 3,
+        "first_failure_time": 0.0048000000000000004,
+        "conservation_drift": 1.9250410474668257e-09,
+        "runtime_seconds": 0.0007119178771972656
+      }
+    ],
+    "estimated_stable_interval": [
+      5e-05,
+      0.0002
+    ],
+    "config": {
+      "kd": 0.36,
+      "k1": 1.35,
+      "b": 8.955223880597014,
+      "k2": 2.0,
+      "rho": 9.0,
+      "cv": 0.1072,
+      "beta": 19.580000000000002,
+      "Du": 0.0085,
+      "Dv": 0.17,
+      "Nx": 64,
+      "Ny": 64,
+      "dx": 0.015625,
+      "dy": 0.015625,
+      "dt": 5e-05,
+      "n_steps": 512,
+      "integrator": "explicit_euler",
+      "boundary": "periodic",
+      "dtype": "float32",
+      "backend": "numpy",
+      "seed": 0,
+      "snapshot_stride": 0,
+      "reaction_model": {
+        "name": "p53_mcrd",
+        "stoichiometry": [
+          1.0,
+          -1.0
+        ],
+        "conserved_weights": [
+          1.0,
+          1.0
+        ],
+        "parameters": [
+          0.36,
+          1.35,
+          8.955223880597014,
+          2.0,
+          9.0,
+          0.1072,
+          19.580000000000002
+        ]
+      }
+    }
+  }
+}
