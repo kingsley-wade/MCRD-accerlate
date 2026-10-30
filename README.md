@@ -117,8 +117,6 @@ This is a matched short-run benchmark, not a full t=40 workflow timing. The [run
 
 The original OpenCL notebook recorded 168.1 seconds on an Apple M2 Ultra at 256². That historical run is not directly comparable to the JAX CPU/H100 table: its step count, spacing, dtype, device, and update behavior differ. The 1024² JAX CUDA figure below reproduces a similar random-field morphology; the [migration guide](docs/opencl-migration-guide.md) explains the configuration mapping.
 
-The original non-accelerated Fig. 2b notebook and OpenCL helper are preserved under [`legacy/structure-2025-fig2b/`](legacy/structure-2025-fig2b/), with attribution to the 2025 *Structure* paper and source repository. Their original notices and licensing status are documented there; the root MIT license does not relicense those files.
-
 | Runtime reference | Grid and updates | Time | Evidence |
 | --- | --- | ---: | --- |
 | OpenCL, Apple M2 Ultra | 256², 1,484,901 kernel launches | 168.1 s | One recorded run |
@@ -130,6 +128,18 @@ These rows are a cross-device runtime reference, not a controlled speedup claim.
 ![1024² p53 MCRD random-field reproduction on H100 JAX CUDA at t=40](reports/opencl-style-1024-reference-init/p53-random-speckle-1024-t40.png)
 
 The [JAX CUDA guide](docs/jax-guide.md) gives the device check, solver example, and ACP commands. The full 4096² field archive is kept out of the normal Git history; see the runtime report for its measurements and provenance.
+
+## Original Structure-paper code and acceleration scope
+
+The full original, non-accelerated source-code set for the *Structure* paper's Figures 1–6 is preserved under [`legacy/structure-paper-original/`](legacy/structure-paper-original/), with its original figure paths, MATLAB files, OpenCL helpers, and Jupyter notebooks. The paper citation, source commit, licensing boundary, and excluded data/assets are documented in that directory.
+
+| Part | What is included here | Acceleration status |
+| --- | --- | --- |
+| Original paper code | Original Fig. 1–6 MATLAB, OpenCL, and notebook source under `legacy/structure-paper-original/` | Historical, non-accelerated reference code |
+| MCRD migration | Python Fig. 2b DNA-p53 solver under `src/mcrd_accel/mcrd/` | NumPy reference plus JAX CPU/CUDA backends; CUDA evidence is limited to the configurations in the benchmark reports |
+| LPP migration | Python image-analysis pipeline under `src/mcrd_accel/lpp/` | NumPy implementation; not GPU accelerated and MATLAB parity remains open |
+
+This project accelerates a selected solver workflow from the original paper code; it does **not** accelerate or port every Figure 1–6 analysis. See the [migration-scope notes](legacy/structure-paper-original/README.md) and [runtime comparison](docs/runtime-comparison.md).
 
 ## Documentation
 
@@ -153,4 +163,4 @@ uv run pytest -q
 uv build
 ```
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. The project is licensed under the MIT License; see [LICENSE](LICENSE).
+See [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. The newly written accelerated package is licensed under the MIT License; the preserved original paper files under `legacy/` retain their own notices and are not relicensed by it. See [LICENSE](LICENSE) and the [original-source note](legacy/structure-paper-original/README.md).

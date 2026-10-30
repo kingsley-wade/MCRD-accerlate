@@ -25,7 +25,7 @@ The source notebook's markdown displays `-rho*g(u,v)*u` in both equations, which
 
 ## Default parameter profile (Fig. 2b)
 
-Values are taken from `DPICs-MCRD-Phase-separation/fig2/Fig2b_code/Fig2_b_sim.ipynb`:
+Values are taken from the preserved original notebook at [`legacy/structure-paper-original/fig2/Fig2b_code/Fig2_b_sim.ipynb`](../legacy/structure-paper-original/fig2/Fig2b_code/Fig2_b_sim.ipynb):
 
 | Parameter | Value | Notebook expression |
 |-----------|-------|---------------------|

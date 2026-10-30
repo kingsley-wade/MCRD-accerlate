@@ -130,7 +130,7 @@ class SolverConfig:
 
         Provenance
         ----------
-        Parameter values are taken from ``DPICs-MCRD-Phase-separation/fig2/Fig2b_code/Fig2_b_sim.ipynb``.
+        Parameter values are taken from ``legacy/structure-paper-original/fig2/Fig2b_code/Fig2_b_sim.ipynb``.
         The notebook defines ``tildeb = 60`` and ``b = tildeb / k3`` with ``k3 = 6.7``;
         we store ``b`` directly (``60 / 6.7``). ``rho = 5.0 * 1.8``, ``beta = 17.8 * 1.1``,
         ``Du = 0.17 * 0.05``, ``Dv = 0.17``, ``cv = 0.016 * 6.7``.
