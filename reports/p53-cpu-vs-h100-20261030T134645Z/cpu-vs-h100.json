@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-10-30T13:54:39.808668+00:00",
+  "matched_configuration": {
+    "jax": "0.12.0.1",
+    "jaxlib": "0.12.0.1",
+    "jax_enable_x64": true,
+    "physical_domain": {
+      "Lx": 25.6,
+      "Ly": 25.6
+    },
+    "grid_sizes": [
+      64,
+      128,
+      256,
+      512,
+      1024,
+      2048,
+      4096
+    ],
+    "dtype": "float64",
+    "dt": 2.8722426470588238e-05,
+    "steps_per_grid": 10240,
+    "simulated_time_per_grid": 0.29411764705882354,
+    "seed": 2026
+  },
+  "cpu_device": "cpu",
+  "cpu_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "h100_device": "NVIDIA H100 80GB HBM3",
+  "speedups": [
+    {
+      "grid_size": 64,
+      "steps": 10240,
+      "cpu_cores": 8,
+      "cpu_steady_median_seconds": 0.1892099864780903,
+      "h100_steady_median_seconds": 0.11635604128241539,
+      "steady_speedup_cpu_over_h100": 1.6261294591386648,
+      "cpu_first_compile_run_seconds": 0.3412315845489502,
+      "h100_first_compile_run_seconds": 0.2446892261505127,
+      "first_run_speedup_cpu_over_h100": 1.3945509163491023,
+      "cpu_relative_mass_drift": 0.0,
+      "h100_relative_mass_drift": 0.0,
+      "cpu_all_finite": true,
+      "h100_all_finite": true
+    },
+    {
+      "grid_size": 128,
+      "steps": 10240,
+      "cpu_cores": 8,
+      "cpu_steady_median_seconds": 0.7290437147021294,
+      "h100_steady_median_seconds": 0.11664736457169056,
+      "steady_speedup_cpu_over_h100": 6.24998016353867,
+      "cpu_first_compile_run_seconds": 0.810563325881958,
+      "h100_first_compile_run_seconds": 0.22174501419067383,
+      "first_run_speedup_cpu_over_h100": 3.6553846716254546,
+      "cpu_relative_mass_drift": 0.0,
+      "h100_relative_mass_drift": 0.0,
+      "cpu_all_finite": true,
+      "h100_all_finite": true
+    },
+    {
+      "grid_size": 256,
+      "steps": 10240,
+      "cpu_cores": 8,
+      "cpu_steady_median_seconds": 5.243387691676617,
+      "h100_steady_median_seconds": 0.11743701621890068,
+      "steady_speedup_cpu_over_h100": 44.64850913704268,
+      "cpu_first_compile_run_seconds": 5.337655544281006,
+      "h100_first_compile_run_seconds": 0.22767901420593262,
+      "first_run_speedup_cpu_over_h100": 23.44377483755779,
+      "cpu_relative_mass_drift": 1.3932210505100003e-16,
+      "h100_relative_mass_drift": 0.0,
+      "cpu_all_finite": true,
+      "h100_all_finite": true
+    },
+    {
+      "grid_size": 512,
+      "steps": 10240,
+      "cpu_cores": 8,
+      "cpu_steady_median_seconds": 27.365297868847847,
+      "h100_steady_median_seconds": 0.1159822903573513,
+      "steady_speedup_cpu_over_h100": 235.9437616254433,
+      "cpu_first_compile_run_seconds": 27.69144344329834,
+      "h100_first_compile_run_seconds": 0.23604702949523926,
+      "first_run_speedup_cpu_over_h100": 117.31324686658189,
+      "cpu_relative_mass_drift": 0.0,
+      "h100_relative_mass_drift": 0.0,
+      "cpu_all_finite": true,
+      "h100_all_finite": true
+    },
+    {
+      "grid_size": 1024,
+      "steps": 10240,
+      "cpu_cores": 8,
+      "cpu_steady_median_seconds": 113.18909991905093,
+      "h100_steady_median_seconds": 0.3032163865864277,
+      "steady_speedup_cpu_over_h100": 373.2947984550562,
+      "cpu_first_compile_run_seconds": 113.86608934402466,
+      "h100_first_compile_run_seconds": 0.45900583267211914,
+      "first_run_speedup_cpu_over_h100": 248.07111639769167,
+      "cpu_relative_mass_drift": 0.0,
+      "h100_relative_mass_drift": 0.0,
+      "cpu_all_finite": true,
+      "h100_all_finite": true
+    },
+    {
+      "grid_size": 2048,
+      "steps": 10240,
+      "cpu_cores": 8,
+      "cpu_steady_median_seconds": 130.70764791220427,
+      "h100_steady_median_seconds": 1.1001318283379078,
+      "steady_speedup_cpu_over_h100": 118.81089569936262,
+      "cpu_first_compile_run_seconds": 130.3373990058899,
+      "h100_first_compile_run_seconds": 1.2600433826446533,
+      "first_run_speedup_cpu_over_h100": 103.43881869553577,
+      "cpu_relative_mass_drift": 0.0,
+      "h100_relative_mass_drift": 0.0,
+      "cpu_all_finite": true,
+      "h100_all_finite": true
+    },
+    {
+      "grid_size": 4096,
+      "steps": 10240,
+      "cpu_cores": 8,
+      "cpu_steady_median_seconds": 603.6508702486753,
+      "h100_steady_median_seconds": 4.10209053941071,
+      "steady_speedup_cpu_over_h100": 147.15688609237606,
+      "cpu_first_compile_run_seconds": 600.9873411655426,
+      "h100_first_compile_run_seconds": 4.2226316928863525,
+      "first_run_speedup_cpu_over_h100": 142.32530442519877,
+      "cpu_relative_mass_drift": 0.0,
+      "h100_relative_mass_drift": 0.0,
+      "cpu_all_finite": true,
+      "h100_all_finite": true
+    }
+  ],
+  "4096_field_parity": {
+    "u": {
+      "max_absolute_error": 5.329070518200751e-15,
+      "rms_error": 1.0705116874974455e-15,
+      "relative_rms_error": 1.280676930529407e-16
+    },
+    "v": {
+      "max_absolute_error": 7.105427357601002e-15,
+      "rms_error": 1.5361228603166956e-15,
+      "relative_rms_error": 8.961014511862136e-17
+    }
+  }
+}

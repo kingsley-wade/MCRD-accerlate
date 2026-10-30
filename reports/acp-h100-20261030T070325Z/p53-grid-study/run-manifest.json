@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "experiment": "p53_fixed_domain_spatial_convergence_t40",
+  "created_at_utc": "2026-10-30T07:04:04.167673+00:00",
+  "python": "3.12.16",
+  "platform_machine": "x86_64",
+  "jax": "0.12.0.1",
+  "jaxlib": "0.12.0.1",
+  "device": "cuda:0",
+  "device_kind": "NVIDIA H100 80GB HBM3",
+  "backend": "jax-cuda",
+  "dtype": "float64",
+  "integrator": "explicit_euler",
+  "boundary": "periodic",
+  "physical_domain": {
+    "Lx": 25.6,
+    "Ly": 25.6
+  },
+  "grid_sizes": [
+    64,
+    128,
+    256,
+    512,
+    1024,
+    2048,
+    4096
+  ],
+  "dt": 2.8722426470588238e-05,
+  "dt_rule": "0.5 * dx_4096^2 / (4 * Dv), with Dv=0.17",
+  "steps_per_grid": 1392640,
+  "target_final_time": 40.0,
+  "actual_final_time": 40.00000000000001,
+  "seed": 2026,
+  "initial_condition": "same seeded smooth periodic six-mode field sampled on every grid",
+  "adaptive_stop": {
+    "relative_rms_change_threshold": 1e-05,
+    "consecutive_windows": 3,
+    "window_steps": 10240,
+    "window_time": 0.29411764705882354,
+    "behavior": "diagnostic only; every grid continues to the fixed final time"
+  }
+}

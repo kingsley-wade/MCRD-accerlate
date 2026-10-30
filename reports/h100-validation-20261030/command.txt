@@ -1,0 +1,7 @@
+cd /data/250010002/DNA-p53-MCRD-accelerated
+# Preflight + project PDE/MCRD CUDA smoke; report and memory snapshots are under this directory.
+CUDA_VISIBLE_DEVICES=0 JAX_PLATFORMS=cuda XLA_PYTHON_CLIENT_PREALLOCATE=false PYTHONDONTWRITEBYTECODE=1 .venv312/bin/python scripts/validate_local.py --case all --grid-sizes 16,32 --steps 20 --dt 1e-5 --backend jax-cuda --dtype float32 --output reports/h100-validation-20261030/cuda-smoke.json
+# Same initial state: NumPy reference vs JAX CUDA MCRD parity (64x64, 100 steps).
+# Repeated CPU-vs-CUDA benchmark (128x128 and 256x256, 200 steps).
+CUDA_VISIBLE_DEVICES=0 JAX_PLATFORMS=cuda XLA_PYTHON_CLIENT_PREALLOCATE=false PYTHONDONTWRITEBYTECODE=1 .venv312/bin/python reports/h100-validation-20261030/parity-run.py
+CUDA_VISIBLE_DEVICES=0 JAX_PLATFORMS=cuda XLA_PYTHON_CLIENT_PREALLOCATE=false PYTHONDONTWRITEBYTECODE=1 .venv312/bin/python reports/h100-validation-20261030/benchmark-run.py

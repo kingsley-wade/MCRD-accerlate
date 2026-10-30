@@ -1,0 +1,456 @@
+{
+  "schema_version": 3,
+  "created_at_utc": "2026-10-30T03:31:18.383260+00:00",
+  "profile": "explicit_smoke",
+  "runtime": {
+    "platform": "Linux-5.14.0-284.25.1.el9_2.x86_64-x86_64-with-glibc2.35",
+    "machine": "x86_64",
+    "python": "3.12.16",
+    "numpy": "2.5.4",
+    "jax": "0.12.0.1",
+    "jaxlib": "0.12.0.1",
+    "device": "cuda:0",
+    "device_kind": "NVIDIA H100 80GB HBM3 MIG 3g.40gb",
+    "device_platform": "gpu"
+  },
+  "case_families": {
+    "heat": "parabolic",
+    "poisson": "elliptic",
+    "wave": "hyperbolic",
+    "p53_mcrd": "scientific reaction-diffusion workload"
+  },
+  "cases": {
+    "heat": {
+      "16": {
+        "grid": {
+          "Nx": 16,
+          "Ny": 16,
+          "dx": 0.0625,
+          "dy": 0.0625,
+          "backend": "jax-cuda",
+          "dtype": "float32",
+          "seed": 0
+        },
+        "steps": 20,
+        "dt": 1e-05,
+        "mode_max_error": 4.4369916141207e-07,
+        "mass_drift": -4.887580871582031e-06,
+        "stability_number": 0.0005120000000000001,
+        "runtime_seconds": 0.31534121185541153
+      },
+      "32": {
+        "grid": {
+          "Nx": 32,
+          "Ny": 32,
+          "dx": 0.03125,
+          "dy": 0.03125,
+          "backend": "jax-cuda",
+          "dtype": "float32",
+          "seed": 0
+        },
+        "steps": 20,
+        "dt": 1e-05,
+        "mode_max_error": 9.268604825862781e-07,
+        "mass_drift": 0.00011754035949707031,
+        "stability_number": 0.0020480000000000003,
+        "runtime_seconds": 0.09023500978946686
+      }
+    },
+    "poisson": {
+      "16": {
+        "grid": {
+          "Nx": 16,
+          "Ny": 16,
+          "dx": 0.0625,
+          "dy": 0.0625,
+          "backend": "jax-cuda",
+          "dtype": "float32",
+          "seed": 0
+        },
+        "rhs_mean": 3.246896085329354e-09,
+        "relative_residual": 1.0826157217644616e-06,
+        "iterations": null,
+        "converged": true,
+        "runtime_seconds": 1.6809632331132889
+      },
+      "32": {
+        "grid": {
+          "Nx": 32,
+          "Ny": 32,
+          "dx": 0.03125,
+          "dy": 0.03125,
+          "backend": "jax-cuda",
+          "dtype": "float32",
+          "seed": 0
+        },
+        "rhs_mean": 2.479538352417876e-09,
+        "relative_residual": 1.6546155751603487e-06,
+        "iterations": null,
+        "converged": true,
+        "runtime_seconds": 1.2912044301629066
+      }
+    },
+    "wave": {
+      "16": {
+        "grid": {
+          "Nx": 16,
+          "Ny": 16,
+          "dx": 0.0625,
+          "dy": 0.0625,
+          "backend": "jax-cuda",
+          "dtype": "float32",
+          "seed": 0
+        },
+        "steps": 20,
+        "dt": 1e-05,
+        "cfl_number": 9.05096679918781e-05,
+        "mode_max_error": 1.3569040913097297e-07,
+        "energy_relative_drift": 0.0,
+        "snapshot_steps": [
+          5,
+          10,
+          15,
+          20
+        ],
+        "mass_drift": 0.0,
+        "runtime_seconds": 0.15769420936703682
+      },
+      "32": {
+        "grid": {
+          "Nx": 32,
+          "Ny": 32,
+          "dx": 0.03125,
+          "dy": 0.03125,
+          "backend": "jax-cuda",
+          "dtype": "float32",
+          "seed": 0
+        },
+        "steps": 20,
+        "dt": 1e-05,
+        "cfl_number": 0.0001810193359837562,
+        "mode_max_error": 1.474376727372828e-07,
+        "energy_relative_drift": 0.0,
+        "snapshot_steps": [
+          5,
+          10,
+          15,
+          20
+        ],
+        "mass_drift": 0.0,
+        "runtime_seconds": 0.16048247180879116
+      }
+    },
+    "p53_mcrd": {
+      "conservation": {
+        "config": {
+          "kd": 0.36,
+          "k1": 1.35,
+          "b": 8.955223880597014,
+          "k2": 2.0,
+          "rho": 9.0,
+          "cv": 0.1072,
+          "beta": 19.580000000000002,
+          "Du": 0.0085,
+          "Dv": 0.17,
+          "Nx": 32,
+          "Ny": 32,
+          "dx": 0.03125,
+          "dy": 0.03125,
+          "dt": 1e-05,
+          "n_steps": 20,
+          "integrator": "explicit_euler",
+          "boundary": "periodic",
+          "dtype": "float32",
+          "backend": "jax-cuda",
+          "seed": 0,
+          "snapshot_stride": 0,
+          "reaction_model": {
+            "name": "p53_mcrd",
+            "stoichiometry": [
+              1.0,
+              -1.0
+            ],
+            "conserved_weights": [
+              1.0,
+              1.0
+            ],
+            "parameters": [
+              0.36,
+              1.35,
+              8.955223880597014,
+              2.0,
+              9.0,
+              0.1072,
+              19.580000000000002
+            ]
+          }
+        },
+        "initial_mass": 26099.794921875,
+        "final_mass": 26099.794921875,
+        "max_drift": 0.0,
+        "mean_drift": 0.0,
+        "all_finite": true,
+        "n_checkpoints": 2,
+        "metadata": {
+          "backend": "jax-cuda",
+          "dtype": "float32",
+          "integrator": "explicit_euler",
+          "seed": 0,
+          "n_steps": 20,
+          "dt": 1e-05,
+          "final_time": 0.0002,
+          "Nx": 32,
+          "Ny": 32,
+          "dx": 0.03125,
+          "dy": 0.03125,
+          "initial_mass": 26099.794921875,
+          "final_mass": 26099.794921875,
+          "runtime_seconds": 0.12281107902526855,
+          "reaction_model": {
+            "name": "p53_mcrd",
+            "stoichiometry": [
+              1.0,
+              -1.0
+            ],
+            "conserved_weights": [
+              1.0,
+              1.0
+            ],
+            "parameters": [
+              0.36,
+              1.35,
+              8.955223880597014,
+              2.0,
+              9.0,
+              0.1072,
+              19.580000000000002
+            ]
+          }
+        }
+      },
+      "spatial": {
+        "study_type": "spatial",
+        "cases": [
+          {
+            "grid_size": 16,
+            "dt": 1e-05,
+            "error_norm": 0.02640520967543125,
+            "observed_order": null,
+            "conservation_drift": 0.0,
+            "runtime_seconds": 0.11944293975830078,
+            "peak_memory_bytes": 10240,
+            "status": "completed"
+          },
+          {
+            "grid_size": 32,
+            "dt": 1e-05,
+            "error_norm": 0.0,
+            "observed_order": null,
+            "conservation_drift": 0.0,
+            "runtime_seconds": 0.003349781036376953,
+            "peak_memory_bytes": 40960,
+            "status": "completed"
+          }
+        ],
+        "reference_case": {
+          "grid_size": 32,
+          "dt": 1e-05,
+          "error_norm": NaN,
+          "observed_order": null,
+          "conservation_drift": 0.0,
+          "runtime_seconds": 0.003349781036376953,
+          "peak_memory_bytes": 40960,
+          "status": "completed"
+        },
+        "config": {
+          "kd": 0.36,
+          "k1": 1.35,
+          "b": 8.955223880597014,
+          "k2": 2.0,
+          "rho": 9.0,
+          "cv": 0.1072,
+          "beta": 19.580000000000002,
+          "Du": 0.0085,
+          "Dv": 0.17,
+          "Nx": 32,
+          "Ny": 32,
+          "dx": 0.03125,
+          "dy": 0.03125,
+          "dt": 1e-05,
+          "n_steps": 20,
+          "integrator": "explicit_euler",
+          "boundary": "periodic",
+          "dtype": "float32",
+          "backend": "jax-cuda",
+          "seed": 0,
+          "snapshot_stride": 0,
+          "reaction_model": {
+            "name": "p53_mcrd",
+            "stoichiometry": [
+              1.0,
+              -1.0
+            ],
+            "conserved_weights": [
+              1.0,
+              1.0
+            ],
+            "parameters": [
+              0.36,
+              1.35,
+              8.955223880597014,
+              2.0,
+              9.0,
+              0.1072,
+              19.580000000000002
+            ]
+          }
+        }
+      },
+      "temporal": {
+        "study_type": "temporal",
+        "cases": [
+          {
+            "grid_size": 32,
+            "dt": 1e-05,
+            "error_norm": 9.516436693957075e-05,
+            "observed_order": null,
+            "conservation_drift": 0.0,
+            "runtime_seconds": 0.0025599002838134766,
+            "peak_memory_bytes": 40960,
+            "status": "completed"
+          },
+          {
+            "grid_size": 32,
+            "dt": 5e-06,
+            "error_norm": 0.0,
+            "observed_order": null,
+            "conservation_drift": 0.0,
+            "runtime_seconds": 0.11429429054260254,
+            "peak_memory_bytes": 40960,
+            "status": "completed"
+          }
+        ],
+        "reference_case": {
+          "grid_size": 32,
+          "dt": 5e-06,
+          "error_norm": NaN,
+          "observed_order": null,
+          "conservation_drift": 0.0,
+          "runtime_seconds": 0.11429429054260254,
+          "peak_memory_bytes": 40960,
+          "status": "completed"
+        },
+        "config": {
+          "kd": 0.36,
+          "k1": 1.35,
+          "b": 8.955223880597014,
+          "k2": 2.0,
+          "rho": 9.0,
+          "cv": 0.1072,
+          "beta": 19.580000000000002,
+          "Du": 0.0085,
+          "Dv": 0.17,
+          "Nx": 32,
+          "Ny": 32,
+          "dx": 0.03125,
+          "dy": 0.03125,
+          "dt": 1e-05,
+          "n_steps": 20,
+          "integrator": "explicit_euler",
+          "boundary": "periodic",
+          "dtype": "float32",
+          "backend": "jax-cuda",
+          "seed": 0,
+          "snapshot_stride": 0,
+          "reaction_model": {
+            "name": "p53_mcrd",
+            "stoichiometry": [
+              1.0,
+              -1.0
+            ],
+            "conserved_weights": [
+              1.0,
+              1.0
+            ],
+            "parameters": [
+              0.36,
+              1.35,
+              8.955223880597014,
+              2.0,
+              9.0,
+              0.1072,
+              19.580000000000002
+            ]
+          }
+        }
+      },
+      "stability": {
+        "cases": [
+          {
+            "dt": 1e-05,
+            "status": "stable",
+            "first_failure_step": null,
+            "first_failure_time": null,
+            "conservation_drift": 3.580874314707465e-09,
+            "runtime_seconds": 0.0025806427001953125
+          },
+          {
+            "dt": 5e-06,
+            "status": "stable",
+            "first_failure_step": null,
+            "first_failure_time": null,
+            "conservation_drift": 2.1923720294127337e-09,
+            "runtime_seconds": 0.004471302032470703
+          }
+        ],
+        "estimated_stable_interval": [
+          5e-06,
+          1e-05
+        ],
+        "config": {
+          "kd": 0.36,
+          "k1": 1.35,
+          "b": 8.955223880597014,
+          "k2": 2.0,
+          "rho": 9.0,
+          "cv": 0.1072,
+          "beta": 19.580000000000002,
+          "Du": 0.0085,
+          "Dv": 0.17,
+          "Nx": 32,
+          "Ny": 32,
+          "dx": 0.03125,
+          "dy": 0.03125,
+          "dt": 1e-05,
+          "n_steps": 20,
+          "integrator": "explicit_euler",
+          "boundary": "periodic",
+          "dtype": "float32",
+          "backend": "jax-cuda",
+          "seed": 0,
+          "snapshot_stride": 0,
+          "reaction_model": {
+            "name": "p53_mcrd",
+            "stoichiometry": [
+              1.0,
+              -1.0
+            ],
+            "conserved_weights": [
+              1.0,
+              1.0
+            ],
+            "parameters": [
+              0.36,
+              1.35,
+              8.955223880597014,
+              2.0,
+              9.0,
+              0.1072,
+              19.580000000000002
+            ]
+          }
+        }
+      }
+    }
+  }
+}

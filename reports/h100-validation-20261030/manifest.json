@@ -1,0 +1,22 @@
+{
+  "source_revision": "d0d11fe02df97e360fd8b8eae495683a1e9a32d6",
+  "project_path": "/data/250010002/DNA-p53-MCRD-accelerated",
+  "reports": [
+    "cuda-smoke.json",
+    "mcrd-parity.json",
+    "cpu-vs-cuda-benchmark.json"
+  ],
+  "memory_snapshots": {
+    "before": "gpu-before.json",
+    "after_smoke": "gpu-after.json",
+    "before_benchmark_bytes": {
+      "free_bytes": 42098360320,
+      "total_bytes": 42412802048
+    },
+    "after_benchmark_bytes": {
+      "free_bytes": 41991405568,
+      "total_bytes": 42412802048
+    }
+  },
+  "commands_file": "command.txt"
+}

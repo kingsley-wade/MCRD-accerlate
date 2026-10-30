@@ -1,51 +1,55 @@
-# H100 Smoke Validation
+# H100 Validation
 
-This procedure is for a small device-execution smoke on the shared H100 host. It is not a performance benchmark or a full correctness study. Never stop another user's process. The last recorded probe found about 29 GiB free per H100, but device availability must be checked again immediately before each run.
+This page records the bounded CUDA evidence for the MCRD migration. It does not establish production-scale behavior, compatibility with other GPUs, or parity with MATLAB/OpenCL. The benchmark used one shared NVIDIA H100 MIG 3g.40gb instance and did not interrupt other processes.
 
-## Current state
+## Recorded run: 2026-10-30
 
-The project is uploaded to `/mnt/afs/gmt/DNA-p53-MCRD-accelerated`. The locked CUDA dependency sync resolved successfully but its package downloads made negligible progress for more than ten minutes. The install was stopped before any GPU work. The remote `.venv` is incomplete, and the old `reports/s1_pde_smoke_h100.json` is not attributable evidence because it lacks host and device provenance.
+The reports and exact commands are in [`reports/h100-validation-20261030/`](../reports/h100-validation-20261030/). They were generated from source revision `d0d11fe02df97e360fd8b8eae495683a1e9a32d6`.
 
-## Prepare the environment
+| Item | Recorded value |
+| --- | --- |
+| Device | NVIDIA H100 80GB HBM3 MIG 3g.40gb |
+| Driver | 580.95.05 |
+| Python | 3.12.16 |
+| JAX / jaxlib | 0.12.0.1 / 0.12.0.1 |
+| CUDA runtime package | 12.9.79 |
+| CUDA memory before / after benchmark | 39.21 / 39.11 GiB free of 39.50 GiB |
+
+The project PDE smoke ran heat, periodic Poisson, wave, and p53 MCRD on 16² and 32² grids, float32, 20 steps. Both Poisson cases converged; both p53 stability cases were stable; all reported fields were finite.
+
+The same-input p53 parity run used a 64² grid, float32, 100 steps, and seed 31415. NumPy and JAX CUDA were compared with `rtol=3e-5, atol=2e-6`. The maximum absolute errors were `9.54e-6` for `u` and `9.54e-7` for `v`; both fields passed the tolerance.
+
+The repeated timing comparison used identical seeded initial fields and p53 parameters for both backends, float32, 200 steps, two warmups, and five timed repeats per backend:
+
+| Grid | NumPy mean | JAX CUDA mean | NumPy/CUDA ratio |
+| --- | ---: | ---: | ---: |
+| 128 × 128 | 45.6 ms | 4.93 ms | 9.26× |
+| 256 × 256 | 146.0 ms | 5.23 ms | 27.90× |
+
+The CUDA timings cover the public solver call, including host-to-device input transfer and final-state transfer back to host memory. First-call wall time, which includes compilation and setup, is reported separately in the JSON. These are measurements for this MIG slice, this code revision, and these two workloads; they are not general GPU speed guarantees.
+
+`nvidia-smi` denied memory-detail queries inside the container. The report therefore records free and total MIG memory through CUDA `cudaMemGetInfo` before and after runs. This is not a peak-memory measurement. The JAX allocator statistics are recorded separately and do not represent total process or device memory.
+
+The remote environment was installed under `/data/250010002/DNA-p53-MCRD-accelerated/` using the Tsinghua PyPI mirror. `uv sync --locked` reported that the existing lockfile needs an update; the lockfile was not changed for this run, so the exact installed versions are recorded with the report.
+
+## Reproduce on the recorded host
+
+The prepared environment is `.venv312` in the project directory. Run one workload at a time and check MIG memory before starting. The exact commands used are in [`command.txt`](../reports/h100-validation-20261030/command.txt); the parity and benchmark scripts are stored beside the reports.
 
 ```bash
-cd /mnt/afs/gmt/DNA-p53-MCRD-accelerated
-df -h /mnt/afs
-nvidia-smi --query-gpu=index,name,uuid,memory.total,memory.used,memory.free,driver_version --format=csv
-UV_CACHE_DIR=/mnt/afs/gmt/.cache/uv-dna-p53 uv sync --locked --extra jax-cuda --python 3.12
-```
-
-If package downloads stall, stop and resolve the cluster's package-index/network path before retrying. Do not repeatedly create environments or download duplicate caches. The project requires Python 3.11 or newer; do not use the system Python 3.10.
-
-After installation, verify JAX sees a GPU before running the project workload:
-
-```bash
-cd /mnt/afs/gmt/DNA-p53-MCRD-accelerated
-uv run python -c 'import jax; print(jax.__version__); print(jax.devices("gpu"))'
-```
-
-## Run the bounded smoke
-
-Recheck free VRAM. Select one device with at least 16 GiB free, then capture the device state before and after. This short run uses only 16 and 32 grids, float32, 20 steps, and one selected GPU.
-
-```bash
-mkdir -p reports/h100-smoke
-nvidia-smi --query-gpu=index,name,uuid,memory.total,memory.used,memory.free,driver_version --format=csv > reports/h100-smoke/gpu-before.csv
-CUDA_VISIBLE_DEVICES=0 XLA_PYTHON_CLIENT_PREALLOCATE=false \
-  uv run python scripts/validate_local.py \
+cd /data/250010002/DNA-p53-MCRD-accelerated
+CUDA_VISIBLE_DEVICES=0 JAX_PLATFORMS=cuda \
+  XLA_PYTHON_CLIENT_PREALLOCATE=false PYTHONDONTWRITEBYTECODE=1 \
+  .venv312/bin/python scripts/validate_local.py \
   --case all --grid-sizes 16,32 --steps 20 --dt 1e-5 \
   --backend jax-cuda --dtype float32 \
-  --output reports/h100-smoke/report.json
-nvidia-smi --query-gpu=index,name,uuid,memory.total,memory.used,memory.free,driver_version --format=csv > reports/h100-smoke/gpu-after.csv
-nvidia-smi --query-gpu=index,name,uuid,memory.total,memory.used,memory.free,driver_version --format=csv
+  --output reports/h100-validation-20261030/cuda-smoke.json
+CUDA_VISIBLE_DEVICES=0 JAX_PLATFORMS=cuda \
+  XLA_PYTHON_CLIENT_PREALLOCATE=false PYTHONDONTWRITEBYTECODE=1 \
+  .venv312/bin/python reports/h100-validation-20261030/parity-run.py
+CUDA_VISIBLE_DEVICES=0 JAX_PLATFORMS=cuda \
+  XLA_PYTHON_CLIENT_PREALLOCATE=false PYTHONDONTWRITEBYTECODE=1 \
+  .venv312/bin/python reports/h100-validation-20261030/benchmark-run.py
 ```
 
-Keep the JSON report together with both CSV snapshots, the exact command, and the source revision or source archive SHA-256. Confirm `runtime.device` and `runtime.device_kind` identify the H100 before describing this as GPU execution. If the device is not available, the workload fails, or memory drops below the preflight threshold, stop without substituting a CPU run and labeling it CUDA.
-
-## Interpretation and follow-up
-
-- This smoke establishes only that the listed small workloads execute through the selected JAX CUDA backend on the recorded device.
-- It does not establish speedup, production-scale stability, long-run conservation, or parity with NumPy, MATLAB, or the original OpenCL implementation.
-- Compare NumPy and CUDA on identical inputs and explicit tolerances before making a numerical parity claim. Keep that comparison as a separate result.
-- Do not run grid 4096, a throughput sweep, or concurrent benchmark jobs while this device is shared.
-- Copy the new report and metadata back to the local `reports/` directory, review it, and update `docs/backend-matrix.md`. Preserve the old provenance-incomplete JSON as historical evidence; do not silently relabel it.
+Do not run grid 4096 or concurrent throughput sweeps on this shared MIG host. Keep H100 and RTX 5090 evidence separate. The old `reports/s1_pde_smoke_h100.json` remains historical because it has no attributable host/device provenance.

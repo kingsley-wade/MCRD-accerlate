@@ -1,0 +1,433 @@
+{
+  "manifest": {
+    "schema_version": 1,
+    "experiment": "p53_fixed_domain_spatial_convergence_t40",
+    "created_at_utc": "2026-10-30T07:04:04.167673+00:00",
+    "python": "3.12.16",
+    "platform_machine": "x86_64",
+    "jax": "0.12.0.1",
+    "jaxlib": "0.12.0.1",
+    "device": "cuda:0",
+    "device_kind": "NVIDIA H100 80GB HBM3",
+    "backend": "jax-cuda",
+    "dtype": "float64",
+    "integrator": "explicit_euler",
+    "boundary": "periodic",
+    "physical_domain": {
+      "Lx": 25.6,
+      "Ly": 25.6
+    },
+    "grid_sizes": [
+      64,
+      128,
+      256,
+      512,
+      1024,
+      2048,
+      4096
+    ],
+    "dt": 2.8722426470588238e-05,
+    "dt_rule": "0.5 * dx_4096^2 / (4 * Dv), with Dv=0.17",
+    "steps_per_grid": 1392640,
+    "target_final_time": 40.0,
+    "actual_final_time": 40.00000000000001,
+    "seed": 2026,
+    "initial_condition": "same seeded smooth periodic six-mode field sampled on every grid",
+    "adaptive_stop": {
+      "relative_rms_change_threshold": 1e-05,
+      "consecutive_windows": 3,
+      "window_steps": 10240,
+      "window_time": 0.29411764705882354,
+      "behavior": "diagnostic only; every grid continues to the fixed final time"
+    }
+  },
+  "cases": [
+    {
+      "grid_size": 64,
+      "dx": 0.4,
+      "dy": 0.4,
+      "physical_domain": {
+        "Lx": 25.6,
+        "Ly": 25.6
+      },
+      "dt": 2.8722426470588238e-05,
+      "steps": 1392640,
+      "final_time": 40.00000000000001,
+      "runtime_seconds_including_compile_and_diagnostics": 18.382681529037654,
+      "solver_runtime_seconds": 16.912106037139893,
+      "relative_mass_drift": 5.572884202040001e-16,
+      "all_finite": true,
+      "state_range": {
+        "u": [
+          17.803806622818545,
+          18.81908757293676
+        ],
+        "v": [
+          7.1093662040917325,
+          7.229371492328792
+        ]
+      },
+      "adaptive_convergence_diagnostic": {
+        "relative_rms_change_threshold": 1e-05,
+        "consecutive_windows": 3,
+        "window_steps": 10240,
+        "window_time": 0.29411764705882354,
+        "behavior": "diagnostic only; every grid continues to the fixed final time",
+        "first_converged_time": 4.411764705882353,
+        "continued_to_fixed_final_time": true
+      },
+      "device_memory_stats": {
+        "num_allocs": 4850,
+        "bytes_in_use": 65536,
+        "peak_bytes_in_use": 67244288,
+        "largest_alloc_size": 33554432,
+        "bytes_limit": 63763906560,
+        "bytes_reserved": 0,
+        "peak_bytes_reserved": 0,
+        "largest_free_block_bytes": 33554432,
+        "pool_bytes": 69206016,
+        "peak_pool_bytes": 69206016
+      }
+    },
+    {
+      "grid_size": 128,
+      "dx": 0.2,
+      "dy": 0.2,
+      "physical_domain": {
+        "Lx": 25.6,
+        "Ly": 25.6
+      },
+      "dt": 2.8722426470588238e-05,
+      "steps": 1392640,
+      "final_time": 40.00000000000001,
+      "runtime_seconds_including_compile_and_diagnostics": 18.160413035191596,
+      "solver_runtime_seconds": 16.675750255584717,
+      "relative_mass_drift": 1.6718652606120004e-15,
+      "all_finite": true,
+      "state_range": {
+        "u": [
+          17.803476001606004,
+          18.81933138310258
+        ],
+        "v": [
+          7.109336986088828,
+          7.22941220526122
+        ]
+      },
+      "adaptive_convergence_diagnostic": {
+        "relative_rms_change_threshold": 1e-05,
+        "consecutive_windows": 3,
+        "window_steps": 10240,
+        "window_time": 0.29411764705882354,
+        "behavior": "diagnostic only; every grid continues to the fixed final time",
+        "first_converged_time": 4.411764705882353,
+        "continued_to_fixed_final_time": true
+      },
+      "device_memory_stats": {
+        "num_allocs": 9700,
+        "bytes_in_use": 262144,
+        "peak_bytes_in_use": 67649792,
+        "largest_alloc_size": 33554432,
+        "bytes_limit": 63763906560,
+        "bytes_reserved": 0,
+        "peak_bytes_reserved": 0,
+        "largest_free_block_bytes": 33554432,
+        "pool_bytes": 69206016,
+        "peak_pool_bytes": 69206016
+      },
+      "difference_from_previous_grid": {
+        "coarse_grid_size": 64,
+        "fine_grid_size": 128,
+        "u_rms_difference": 4.8781877242064925e-05,
+        "v_rms_difference": 5.272699268730539e-06,
+        "u_relative_rms_difference": 2.660683820646809e-06,
+        "v_relative_rms_difference": 7.357061348035111e-07,
+        "u_observed_order": 1.9981605191747347,
+        "v_observed_order": 1.99818771449797
+      }
+    },
+    {
+      "grid_size": 256,
+      "dx": 0.1,
+      "dy": 0.1,
+      "physical_domain": {
+        "Lx": 25.6,
+        "Ly": 25.6
+      },
+      "dt": 2.8722426470588238e-05,
+      "steps": 1392640,
+      "final_time": 40.00000000000001,
+      "runtime_seconds_including_compile_and_diagnostics": 17.952705681789666,
+      "solver_runtime_seconds": 16.843068838119507,
+      "relative_mass_drift": 3.065086311122001e-15,
+      "all_finite": true,
+      "state_range": {
+        "u": [
+          17.80310738031553,
+          18.819754590156982
+        ],
+        "v": [
+          7.109289666866389,
+          7.22945639240623
+        ]
+      },
+      "adaptive_convergence_diagnostic": {
+        "relative_rms_change_threshold": 1e-05,
+        "consecutive_windows": 3,
+        "window_steps": 10240,
+        "window_time": 0.29411764705882354,
+        "behavior": "diagnostic only; every grid continues to the fixed final time",
+        "first_converged_time": 4.411764705882353,
+        "continued_to_fixed_final_time": true
+      },
+      "device_memory_stats": {
+        "num_allocs": 15859,
+        "bytes_in_use": 1081344,
+        "peak_bytes_in_use": 68978688,
+        "largest_alloc_size": 33554432,
+        "bytes_limit": 63763906560,
+        "bytes_reserved": 0,
+        "peak_bytes_reserved": 0,
+        "largest_free_block_bytes": 33554432,
+        "pool_bytes": 69206016,
+        "peak_pool_bytes": 69206016
+      },
+      "difference_from_previous_grid": {
+        "coarse_grid_size": 128,
+        "fine_grid_size": 256,
+        "u_rms_difference": 1.2211028828634828e-05,
+        "v_rms_difference": 1.3198317232658134e-06,
+        "u_relative_rms_difference": 6.660195926438146e-07,
+        "v_relative_rms_difference": 1.8415772362373333e-07,
+        "u_observed_order": 1.9995404352662602,
+        "v_observed_order": 1.9995472511210581
+      }
+    },
+    {
+      "grid_size": 512,
+      "dx": 0.05,
+      "dy": 0.05,
+      "physical_domain": {
+        "Lx": 25.6,
+        "Ly": 25.6
+      },
+      "dt": 2.8722426470588238e-05,
+      "steps": 1392640,
+      "final_time": 40.00000000000001,
+      "runtime_seconds_including_compile_and_diagnostics": 17.77579811308533,
+      "solver_runtime_seconds": 16.45586585998535,
+      "relative_mass_drift": 1.2817633664692004e-14,
+      "all_finite": true,
+      "state_range": {
+        "u": [
+          17.803064964038015,
+          18.819761700161152
+        ],
+        "v": [
+          7.109288893970749,
+          7.2294617656169695
+        ]
+      },
+      "adaptive_convergence_diagnostic": {
+        "relative_rms_change_threshold": 1e-05,
+        "consecutive_windows": 3,
+        "window_steps": 10240,
+        "window_time": 0.29411764705882354,
+        "behavior": "diagnostic only; every grid continues to the fixed final time",
+        "first_converged_time": 4.411764705882353,
+        "continued_to_fixed_final_time": true
+      },
+      "device_memory_stats": {
+        "num_allocs": 22018,
+        "bytes_in_use": 4194304,
+        "peak_bytes_in_use": 68978688,
+        "largest_alloc_size": 33554432,
+        "bytes_limit": 63763906560,
+        "bytes_reserved": 0,
+        "peak_bytes_reserved": 0,
+        "largest_free_block_bytes": 33554432,
+        "pool_bytes": 69206016,
+        "peak_pool_bytes": 69206016
+      },
+      "difference_from_previous_grid": {
+        "coarse_grid_size": 256,
+        "fine_grid_size": 512,
+        "u_rms_difference": 3.0537298056548764e-06,
+        "v_rms_difference": 3.3006149499467333e-07,
+        "u_relative_rms_difference": 1.6655794501531013e-07,
+        "v_relative_rms_difference": 4.605388132926226e-08,
+        "u_observed_order": 1.9998923305568952,
+        "v_observed_order": 1.9998943242499538
+      }
+    },
+    {
+      "grid_size": 1024,
+      "dx": 0.025,
+      "dy": 0.025,
+      "physical_domain": {
+        "Lx": 25.6,
+        "Ly": 25.6
+      },
+      "dt": 2.8722426470588238e-05,
+      "steps": 1392640,
+      "final_time": 40.00000000000001,
+      "runtime_seconds_including_compile_and_diagnostics": 42.070375501643866,
+      "solver_runtime_seconds": 40.73216485977173,
+      "relative_mass_drift": 2.995425258596501e-14,
+      "all_finite": true,
+      "state_range": {
+        "u": [
+          17.80306353444111,
+          18.819779212028156
+        ],
+        "v": [
+          7.109286246865641,
+          7.229461918815278
+        ]
+      },
+      "adaptive_convergence_diagnostic": {
+        "relative_rms_change_threshold": 1e-05,
+        "consecutive_windows": 3,
+        "window_steps": 10240,
+        "window_time": 0.29411764705882354,
+        "behavior": "diagnostic only; every grid continues to the fixed final time",
+        "first_converged_time": 4.411764705882353,
+        "continued_to_fixed_final_time": true
+      },
+      "device_memory_stats": {
+        "num_allocs": 28177,
+        "bytes_in_use": 20971520,
+        "peak_bytes_in_use": 83902464,
+        "largest_alloc_size": 33554432,
+        "bytes_limit": 63763906560,
+        "bytes_reserved": 0,
+        "peak_bytes_reserved": 0,
+        "largest_free_block_bytes": 67108864,
+        "pool_bytes": 136314880,
+        "peak_pool_bytes": 136314880
+      },
+      "difference_from_previous_grid": {
+        "coarse_grid_size": 512,
+        "fine_grid_size": 1024,
+        "u_rms_difference": 7.634894290922315e-07,
+        "v_rms_difference": 8.25214181261232e-08,
+        "u_relative_rms_difference": 4.164259389025469e-08,
+        "v_relative_rms_difference": 1.1514313710877268e-08,
+        "u_observed_order": 2.0000585122016044,
+        "v_observed_order": 2.0000625246915806
+      }
+    },
+    {
+      "grid_size": 2048,
+      "dx": 0.0125,
+      "dy": 0.0125,
+      "physical_domain": {
+        "Lx": 25.6,
+        "Ly": 25.6
+      },
+      "dt": 2.8722426470588238e-05,
+      "steps": 1392640,
+      "final_time": 40.00000000000001,
+      "runtime_seconds_including_compile_and_diagnostics": 150.94912884617224,
+      "solver_runtime_seconds": 149.35951232910156,
+      "relative_mass_drift": 3.176543995162801e-14,
+      "all_finite": true,
+      "state_range": {
+        "u": [
+          17.80305682509891,
+          18.81978134363005
+        ],
+        "v": [
+          7.109286101366464,
+          7.229462435922853
+        ]
+      },
+      "adaptive_convergence_diagnostic": {
+        "relative_rms_change_threshold": 1e-05,
+        "consecutive_windows": 3,
+        "window_steps": 10240,
+        "window_time": 0.29411764705882354,
+        "behavior": "diagnostic only; every grid continues to the fixed final time",
+        "first_converged_time": 4.411764705882353,
+        "continued_to_fixed_final_time": true
+      },
+      "device_memory_stats": {
+        "num_allocs": 34336,
+        "bytes_in_use": 67108864,
+        "peak_bytes_in_use": 268435712,
+        "largest_alloc_size": 134217728,
+        "bytes_limit": 63763906560,
+        "bytes_reserved": 0,
+        "peak_bytes_reserved": 0,
+        "largest_free_block_bytes": 134217728,
+        "pool_bytes": 270532608,
+        "peak_pool_bytes": 270532608
+      },
+      "difference_from_previous_grid": {
+        "coarse_grid_size": 1024,
+        "fine_grid_size": 2048,
+        "u_rms_difference": 1.9086461611151286e-07,
+        "v_rms_difference": 2.0629460455813747e-08,
+        "u_relative_rms_difference": 1.0410226246391053e-08,
+        "v_relative_rms_difference": 2.878453676200526e-09,
+        "u_observed_order": 1.9996001929188518,
+        "v_observed_order": 1.9995911954027563
+      }
+    },
+    {
+      "grid_size": 4096,
+      "dx": 0.00625,
+      "dy": 0.00625,
+      "physical_domain": {
+        "Lx": 25.6,
+        "Ly": 25.6
+      },
+      "dt": 2.8722426470588238e-05,
+      "steps": 1392640,
+      "final_time": 40.00000000000001,
+      "runtime_seconds_including_compile_and_diagnostics": 553.9519516257569,
+      "solver_runtime_seconds": 551.9704856872559,
+      "relative_mass_drift": 5.0991890448666015e-14,
+      "all_finite": true,
+      "state_range": {
+        "u": [
+          17.803056451911562,
+          18.819782998770467
+        ],
+        "v": [
+          7.1092859539992395,
+          7.229462445522109
+        ]
+      },
+      "adaptive_convergence_diagnostic": {
+        "relative_rms_change_threshold": 1e-05,
+        "consecutive_windows": 3,
+        "window_steps": 10240,
+        "window_time": 0.29411764705882354,
+        "behavior": "diagnostic only; every grid continues to the fixed final time",
+        "first_converged_time": 4.411764705882353,
+        "continued_to_fixed_final_time": true
+      },
+      "device_memory_stats": {
+        "num_allocs": 40495,
+        "bytes_in_use": 268435456,
+        "peak_bytes_in_use": 1006633216,
+        "largest_alloc_size": 402653184,
+        "bytes_limit": 63763906560,
+        "bytes_reserved": 0,
+        "peak_bytes_reserved": 0,
+        "largest_free_block_bytes": 536870912,
+        "pool_bytes": 1075838976,
+        "peak_pool_bytes": 1075838976
+      },
+      "difference_from_previous_grid": {
+        "coarse_grid_size": 2048,
+        "fine_grid_size": 4096,
+        "u_rms_difference": 4.772937920670168e-08,
+        "v_rms_difference": 5.158826721050035e-09,
+        "u_relative_rms_difference": 2.6032778951634934e-09,
+        "v_relative_rms_difference": 7.198173588607516e-10
+      }
+    }
+  ]
+}

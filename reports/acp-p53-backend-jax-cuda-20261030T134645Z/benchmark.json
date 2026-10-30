@@ -1,0 +1,318 @@
+{
+  "manifest": {
+    "schema_version": 1,
+    "created_at_utc": "2026-10-30T13:46:56.273725+00:00",
+    "benchmark": "matched_p53_jax_backend_short_run",
+    "backend": "jax-cuda",
+    "python": "3.12.16",
+    "numpy": "2.5.4",
+    "jax": "0.12.0.1",
+    "jaxlib": "0.12.0.1",
+    "jax_enable_x64": true,
+    "device": "cuda:0",
+    "device_kind": "NVIDIA H100 80GB HBM3",
+    "platform": "Linux-5.14.0-284.25.1.el9_2.x86_64-x86_64-with-glibc2.35",
+    "cpu_affinity": null,
+    "cpu_affinity_count": null,
+    "cpu_threads_requested": null,
+    "physical_domain": {
+      "Lx": 25.6,
+      "Ly": 25.6
+    },
+    "grid_sizes": [
+      64,
+      128,
+      256,
+      512,
+      1024,
+      2048,
+      4096
+    ],
+    "dtype": "float64",
+    "integrator": "explicit_euler",
+    "boundary": "periodic",
+    "dt": 2.8722426470588238e-05,
+    "dt_rule": "0.5 * dx_4096^2 / (4 * Dv), with Dv=0.17",
+    "steps_per_grid": 10240,
+    "simulated_time_per_grid": 0.29411764705882354,
+    "seed": 2026,
+    "initial_condition": "same seeded smooth periodic six-mode field as the fixed-time p53 study",
+    "warmups": 1,
+    "timed_repeats": 3
+  },
+  "cases": [
+    {
+      "grid_size": 64,
+      "dx": 0.4,
+      "dt": 2.8722426470588238e-05,
+      "steps": 10240,
+      "simulated_time": 0.29411764705882354,
+      "cold_first_run_seconds_including_compile": 0.2446892261505127,
+      "cold_first_run_wall_seconds": 0.8027785196900368,
+      "warmup_wall_seconds": [
+        0.11711594834923744
+      ],
+      "timed_run_seconds": [
+        0.11635453253984451,
+        0.11662502028048038,
+        0.11635604128241539
+      ],
+      "steady_median_seconds": 0.11635604128241539,
+      "steady_min_seconds": 0.11635453253984451,
+      "steady_std_seconds": 0.0001271550215456587,
+      "steps_per_second": 88005.74415509569,
+      "grid_steps_per_second": 360471528.05927193,
+      "initial_mass": 104448.0,
+      "final_mass": 104448.0,
+      "relative_mass_drift": 0.0,
+      "all_finite": true,
+      "device_memory_stats": {
+        "num_allocs": 63,
+        "bytes_in_use": 196608,
+        "peak_bytes_in_use": 67309824,
+        "largest_alloc_size": 33554432,
+        "bytes_limit": 63763906560,
+        "bytes_reserved": 0,
+        "peak_bytes_reserved": 0,
+        "largest_free_block_bytes": 33554432,
+        "pool_bytes": 69206016,
+        "peak_pool_bytes": 69206016
+      },
+      "process_max_rss_bytes": 1228861440
+    },
+    {
+      "grid_size": 128,
+      "dx": 0.2,
+      "dt": 2.8722426470588238e-05,
+      "steps": 10240,
+      "simulated_time": 0.29411764705882354,
+      "cold_first_run_seconds_including_compile": 0.22174501419067383,
+      "cold_first_run_wall_seconds": 0.4011193048208952,
+      "warmup_wall_seconds": [
+        0.11684387736022472
+      ],
+      "timed_run_seconds": [
+        0.11675458773970604,
+        0.11664736457169056,
+        0.11640643328428268
+      ],
+      "steady_median_seconds": 0.11664736457169056,
+      "steady_min_seconds": 0.11640643328428268,
+      "steady_std_seconds": 0.00014558549143312664,
+      "steps_per_second": 87785.9524525012,
+      "grid_steps_per_second": 1438285044.9817796,
+      "initial_mass": 417792.0,
+      "final_mass": 417792.0,
+      "relative_mass_drift": 0.0,
+      "all_finite": true,
+      "device_memory_stats": {
+        "num_allocs": 126,
+        "bytes_in_use": 851968,
+        "peak_bytes_in_use": 67977472,
+        "largest_alloc_size": 33554432,
+        "bytes_limit": 63763906560,
+        "bytes_reserved": 0,
+        "peak_bytes_reserved": 0,
+        "largest_free_block_bytes": 33554432,
+        "pool_bytes": 69206016,
+        "peak_pool_bytes": 69206016
+      },
+      "process_max_rss_bytes": 1248288768
+    },
+    {
+      "grid_size": 256,
+      "dx": 0.1,
+      "dt": 2.8722426470588238e-05,
+      "steps": 10240,
+      "simulated_time": 0.29411764705882354,
+      "cold_first_run_seconds_including_compile": 0.22767901420593262,
+      "cold_first_run_wall_seconds": 0.39746722020208836,
+      "warmup_wall_seconds": [
+        0.11788404732942581
+      ],
+      "timed_run_seconds": [
+        0.11743701621890068,
+        0.1176892127841711,
+        0.11726042442023754
+      ],
+      "steady_median_seconds": 0.11743701621890068,
+      "steady_min_seconds": 0.11726042442023754,
+      "steady_std_seconds": 0.0001759568229658451,
+      "steps_per_second": 87195.6758583921,
+      "grid_steps_per_second": 5714455813.055585,
+      "initial_mass": 1671168.0,
+      "final_mass": 1671168.0,
+      "relative_mass_drift": 0.0,
+      "all_finite": true,
+      "device_memory_stats": {
+        "num_allocs": 215,
+        "bytes_in_use": 3670016,
+        "peak_bytes_in_use": 69206016,
+        "largest_alloc_size": 33554432,
+        "bytes_limit": 63763906560,
+        "bytes_reserved": 0,
+        "peak_bytes_reserved": 0,
+        "largest_free_block_bytes": 33554432,
+        "pool_bytes": 69206016,
+        "peak_pool_bytes": 69206016
+      },
+      "process_max_rss_bytes": 1314324480
+    },
+    {
+      "grid_size": 512,
+      "dx": 0.05,
+      "dt": 2.8722426470588238e-05,
+      "steps": 10240,
+      "simulated_time": 0.29411764705882354,
+      "cold_first_run_seconds_including_compile": 0.23604702949523926,
+      "cold_first_run_wall_seconds": 0.3822649419307709,
+      "warmup_wall_seconds": [
+        0.11780028231441975
+      ],
+      "timed_run_seconds": [
+        0.11651132814586163,
+        0.11567497812211514,
+        0.1159822903573513
+      ],
+      "steady_median_seconds": 0.1159822903573513,
+      "steady_min_seconds": 0.11567497812211514,
+      "steady_std_seconds": 0.0003454149121497053,
+      "steps_per_second": 88289.3411438047,
+      "grid_steps_per_second": 23144521044.80154,
+      "initial_mass": 6684672.0,
+      "final_mass": 6684672.0,
+      "relative_mass_drift": 0.0,
+      "all_finite": true,
+      "device_memory_stats": {
+        "num_allocs": 304,
+        "bytes_in_use": 12582912,
+        "peak_bytes_in_use": 69206016,
+        "largest_alloc_size": 33554432,
+        "bytes_limit": 63763906560,
+        "bytes_reserved": 0,
+        "peak_bytes_reserved": 0,
+        "largest_free_block_bytes": 33554432,
+        "pool_bytes": 69206016,
+        "peak_pool_bytes": 69206016
+      },
+      "process_max_rss_bytes": 1363337216
+    },
+    {
+      "grid_size": 1024,
+      "dx": 0.025,
+      "dt": 2.8722426470588238e-05,
+      "steps": 10240,
+      "simulated_time": 0.29411764705882354,
+      "cold_first_run_seconds_including_compile": 0.45900583267211914,
+      "cold_first_run_wall_seconds": 0.6343669835478067,
+      "warmup_wall_seconds": [
+        0.30207239277660847
+      ],
+      "timed_run_seconds": [
+        0.29226305335760117,
+        0.3032163865864277,
+        0.30845935828983784
+      ],
+      "steady_median_seconds": 0.3032163865864277,
+      "steady_min_seconds": 0.29226305335760117,
+      "steady_std_seconds": 0.006747711995455025,
+      "steps_per_second": 33771.2618875274,
+      "grid_steps_per_second": 35411734704.97593,
+      "initial_mass": 26738688.0,
+      "final_mass": 26738688.0,
+      "relative_mass_drift": 0.0,
+      "all_finite": true,
+      "device_memory_stats": {
+        "num_allocs": 393,
+        "bytes_in_use": 58720256,
+        "peak_bytes_in_use": 94373888,
+        "largest_alloc_size": 33554432,
+        "bytes_limit": 63763906560,
+        "bytes_reserved": 0,
+        "peak_bytes_reserved": 0,
+        "largest_free_block_bytes": 67108864,
+        "pool_bytes": 136314880,
+        "peak_pool_bytes": 136314880
+      },
+      "process_max_rss_bytes": 1496039424
+    },
+    {
+      "grid_size": 2048,
+      "dx": 0.0125,
+      "dt": 2.8722426470588238e-05,
+      "steps": 10240,
+      "simulated_time": 0.29411764705882354,
+      "cold_first_run_seconds_including_compile": 1.2600433826446533,
+      "cold_first_run_wall_seconds": 1.4453154634684324,
+      "warmup_wall_seconds": [
+        1.099962780252099
+      ],
+      "timed_run_seconds": [
+        1.0938499588519335,
+        1.1001318283379078,
+        1.112841658294201
+      ],
+      "steady_median_seconds": 1.1001318283379078,
+      "steady_min_seconds": 1.0938499588519335,
+      "steady_std_seconds": 0.00789997404680773,
+      "steps_per_second": 9307.97540461193,
+      "grid_steps_per_second": 39040478471.46544,
+      "initial_mass": 106954752.0,
+      "final_mass": 106954752.0,
+      "relative_mass_drift": 0.0,
+      "all_finite": true,
+      "device_memory_stats": {
+        "num_allocs": 482,
+        "bytes_in_use": 201326592,
+        "peak_bytes_in_use": 335545344,
+        "largest_alloc_size": 67109632,
+        "bytes_limit": 63763906560,
+        "bytes_reserved": 0,
+        "peak_bytes_reserved": 0,
+        "largest_free_block_bytes": 268435456,
+        "pool_bytes": 538968064,
+        "peak_pool_bytes": 538968064
+      },
+      "process_max_rss_bytes": 1712291840
+    },
+    {
+      "grid_size": 4096,
+      "dx": 0.00625,
+      "dt": 2.8722426470588238e-05,
+      "steps": 10240,
+      "simulated_time": 0.29411764705882354,
+      "cold_first_run_seconds_including_compile": 4.2226316928863525,
+      "cold_first_run_wall_seconds": 4.394157355651259,
+      "warmup_wall_seconds": [
+        4.104474108666182
+      ],
+      "timed_run_seconds": [
+        4.10209053941071,
+        4.056656934320927,
+        4.105598848313093
+      ],
+      "steady_median_seconds": 4.10209053941071,
+      "steady_min_seconds": 4.056656934320927,
+      "steady_std_seconds": 0.02229058507787432,
+      "steps_per_second": 2496.2881490838663,
+      "grid_steps_per_second": 41880765475.42023,
+      "initial_mass": 427819008.0,
+      "final_mass": 427819008.0,
+      "relative_mass_drift": 0.0,
+      "all_finite": true,
+      "device_memory_stats": {
+        "num_allocs": 571,
+        "bytes_in_use": 805306368,
+        "peak_bytes_in_use": 1342178304,
+        "largest_alloc_size": 268436224,
+        "bytes_limit": 63763906560,
+        "bytes_reserved": 0,
+        "peak_bytes_reserved": 0,
+        "largest_free_block_bytes": 1073741824,
+        "pool_bytes": 2149580800,
+        "peak_pool_bytes": 2149580800
+      },
+      "process_max_rss_bytes": 2517504000
+    }
+  ]
+}

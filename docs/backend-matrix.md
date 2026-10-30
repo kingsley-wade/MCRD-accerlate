@@ -7,14 +7,14 @@ Backend status describes evidence in this repository. Installing an optional dep
 | NumPy CPU | Implemented and tested | Implemented and tested | Implemented and tested | Reference path. Full unit suite runs locally. LPP is NumPy-only. |
 | JAX CPU | Implemented and locally tested | Implemented and locally tested | Not implemented | Local Apple Silicon host used JAX CPU; results are in the test suite and `reports/benchmark_mcrd.json`. |
 | JAX Metal | Adapter path exists; device unvalidated | Adapter path exists; device unvalidated | Not implemented | Metal runtime/device was unavailable in the local validation environment. Do not infer Metal support from JAX installation. |
-| JAX CUDA | Implemented in MCRD and canonical PDE code; smoke evidence needs provenance | Smoke artifact present | Not implemented | `reports/s1_pde_smoke_h100.json` contains successful cases labeled `jax-cuda`, but omits host/device/runtime identity. An H100 cluster is reachable; a fresh, attributable project run is still required before claiming H100 validation. |
+| JAX CUDA | Implemented in MCRD and canonical PDE code; H100 MIG validation and 64²–4096² p53 run recorded | Heat, periodic Poisson, wave, and p53 smoke cases recorded through 128² | Not implemented | `reports/h100-validation-20261030/` records parity and an earlier NumPy comparison. `reports/acp-h100-20261030T070325Z/` records the float64 t=40 p53 grid study; `reports/p53-cpu-vs-h100-20261030T134645Z/` records matched short-run timings against an 8-core pinned JAX CPU. Performance claims apply only to each recorded configuration. |
 | Ascend C/CANN | Not implemented | Not implemented | Not implemented | Future adapter target only. No Ascend device or toolchain has been validated. |
 
 ## Explicit Device Routing
 
 JAX device selection is explicit. `jax-cpu` requests a CPU device, `jax-cuda` requests a GPU device, and `jax-metal` requests a Metal device. An unavailable requested device raises an error instead of silently substituting CPU.
 
-The project is uploaded to `/mnt/afs/gmt/DNA-p53-MCRD-accelerated` on the reachable Ubuntu 22.04 x86_64 host. It has eight H100 80 GB devices, but other jobs used about 52 GiB on each at the latest check. A locked JAX CUDA install under the project directory stalled while downloading from the package index and was stopped before any GPU run. The environment is incomplete; no new H100 result exists yet. The `/mnt/afs` volume had about 87 GiB free. No Slurm commands were available in the login environment. Retry installation and check available device memory before running the small smoke; do not terminate other users' processes.
+The 2026-10-30 reports were produced on an NVIDIA H100 3g.40gb MIG instance with JAX 0.12.0.1. The matched CPU/H100 short-run benchmark uses float64, 10,240 steps per grid, one warmup, and three timed repeats. The separate fixed-time grid study runs p53 through 4096² to t=40. The historical OpenCL runtime was recorded on an Apple M2 Ultra and is not a same-device or same-configuration speedup comparison. See [runtime comparison](runtime-comparison.md) for the protocols and limitations.
 
 ## What Each Status Means
 

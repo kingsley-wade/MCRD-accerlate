@@ -1,0 +1,19 @@
+{
+  "captured_at_utc": "2026-10-30T03:31:04.168550+00:00",
+  "hostname": "app-1167213c45de44cd9c91a427990e8c7b-b48dcdcdd-cdmgw",
+  "platform": "Linux-5.14.0-284.25.1.el9_2.x86_64-x86_64-with-glibc2.35",
+  "machine": "x86_64",
+  "python": "3.12.16",
+  "jax": "0.12.0.1",
+  "jaxlib": "0.12.0.1",
+  "numpy": "2.5.4",
+  "nvidia_cuda_runtime_package": "12.9.79",
+  "driver_version": "580.95.05",
+  "device_kind": "NVIDIA H100 80GB HBM3 MIG 3g.40gb",
+  "jax_device": "cuda:0",
+  "nvidia_smi_devices": "GPU 0: NVIDIA H100 80GB HBM3 (UUID: GPU-60ba05df-b0b6-e5a7-d937-d7d279e85c91)\n  MIG 3g.40gb     Device  0: (UUID: MIG-1b69e3cf-8ffc-5381-8f3b-9aed8691eed7)",
+  "cuda_free_bytes": 42098360320,
+  "cuda_total_bytes": 42412802048,
+  "source_revision": "d0d11fe02df97e360fd8b8eae495683a1e9a32d6",
+  "min_free_bytes": 17179869184
+}

@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-10-30T03:32:27.956662+00:00",
+  "purpose": "same-input NumPy reference vs JAX CUDA correctness parity",
+  "source_revision": "d0d11fe02df97e360fd8b8eae495683a1e9a32d6",
+  "host": {
+    "hostname": "app-1167213c45de44cd9c91a427990e8c7b-b48dcdcdd-cdmgw",
+    "platform": "Linux-5.14.0-284.25.1.el9_2.x86_64-x86_64-with-glibc2.35",
+    "machine": "x86_64",
+    "python": "3.12.16"
+  },
+  "runtime": {
+    "numpy": "2.5.4",
+    "jax": "0.12.0.1",
+    "jaxlib": "0.12.0.1",
+    "nvidia_cuda_runtime_package": "12.9.79",
+    "driver_version": "580.95.05",
+    "device": "cuda:0",
+    "device_kind": "NVIDIA H100 80GB HBM3 MIG 3g.40gb",
+    "device_platform": "gpu"
+  },
+  "config": {
+    "kd": 0.36,
+    "k1": 1.35,
+    "b": 8.955223880597014,
+    "k2": 2.0,
+    "rho": 9.0,
+    "cv": 0.1072,
+    "beta": 19.580000000000002,
+    "Du": 0.0085,
+    "Dv": 0.17,
+    "Nx": 64,
+    "Ny": 64,
+    "dx": 0.2,
+    "dy": 0.2,
+    "dt": 0.02,
+    "n_steps": 100,
+    "integrator": "explicit_euler",
+    "boundary": "periodic",
+    "dtype": "float32",
+    "backend": "numpy",
+    "seed": 31415,
+    "snapshot_stride": 0
+  },
+  "same_initial_state_sha256": "f712531b36919822f281bb4efd5efe9fcd10ea94d7edeabaf50e8bc2c676c7a3",
+  "tolerance": {
+    "rtol": 3e-05,
+    "atol": 2e-06
+  },
+  "comparison": {
+    "u": {
+      "max_abs": 9.5367431640625e-06,
+      "relative_l2": 9.739449742676168e-08,
+      "allclose": true,
+      "finite": true
+    },
+    "v": {
+      "max_abs": 9.5367431640625e-07,
+      "relative_l2": 3.378086299661488e-08,
+      "allclose": true,
+      "finite": true
+    }
+  },
+  "wall_seconds": {
+    "numpy": 0.01279066689312458,
+    "jax_cuda_including_compile_and_transfer": 6.020900314673781
+  },
+  "solver_runtime_seconds": {
+    "numpy": null,
+    "jax_cuda": 0.13770294189453125
+  },
+  "relative_mass_drift": {
+    "numpy": 1.283944109012457e-08,
+    "jax_cuda": 7.480846601425206e-08
+  },
+  "cuda_memory_before": {
+    "free_bytes": 42098360320,
+    "total_bytes": 42412802048
+  },
+  "cuda_memory_after": {
+    "free_bytes": 41993502720,
+    "total_bytes": 42412802048
+  },
+  "status": "passed"
+}

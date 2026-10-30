@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-10-30T03:33:38.108279+00:00",
+  "purpose": "same-input NumPy CPU vs JAX CUDA MCRD benchmark",
+  "source_revision": "d0d11fe02df97e360fd8b8eae495683a1e9a32d6",
+  "host": {
+    "hostname": "app-1167213c45de44cd9c91a427990e8c7b-b48dcdcdd-cdmgw",
+    "platform": "Linux-5.14.0-284.25.1.el9_2.x86_64-x86_64-with-glibc2.35",
+    "machine": "x86_64",
+    "cpu_count": 192,
+    "python": "3.12.16"
+  },
+  "runtime": {
+    "numpy": "2.5.4",
+    "jax": "0.12.0.1",
+    "jaxlib": "0.12.0.1",
+    "nvidia_cuda_runtime_package": "12.9.79",
+    "driver_version": "580.95.05",
+    "device": "cuda:0",
+    "device_kind": "NVIDIA H100 80GB HBM3 MIG 3g.40gb",
+    "device_platform": "gpu"
+  },
+  "method": {
+    "model": "p53_mcrd",
+    "dtype": "float32",
+    "steps": 200,
+    "grids": [
+      128,
+      256
+    ],
+    "seed": 271828,
+    "warmup_count": 2,
+    "repeats": 5,
+    "timing": "wall time for public run() call; CUDA includes host-to-device input and final output transfer; first CUDA call reported separately and excluded from steady-state",
+    "peak_memory": "JAX allocator peak stats; not whole-process or system memory"
+  },
+  "cuda_memory_before": {
+    "free_bytes": 42098360320,
+    "total_bytes": 42412802048
+  },
+  "results": [
+    {
+      "grid": "128x128",
+      "config": {
+        "kd": 0.36,
+        "k1": 1.35,
+        "b": 8.955223880597014,
+        "k2": 2.0,
+        "rho": 9.0,
+        "cv": 0.1072,
+        "beta": 19.580000000000002,
+        "Du": 0.0085,
+        "Dv": 0.17,
+        "Nx": 128,
+        "Ny": 128,
+        "dx": 0.2,
+        "dy": 0.2,
+        "dt": 0.02,
+        "n_steps": 200,
+        "integrator": "explicit_euler",
+        "boundary": "periodic",
+        "dtype": "float32",
+        "backend": "numpy",
+        "seed": 271828,
+        "snapshot_stride": 0
+      },
+      "same_initial_state_sha256": "1fc47a4ac9bb4992bd2fdc1f20800e71e5c11cce4681a17753a79313d4b18b41",
+      "parity": {
+        "tolerance": {
+          "rtol": 3e-05,
+          "atol": 2e-06
+        },
+        "fields": {
+          "u": {
+            "max_abs": 1.1444091796875e-05,
+            "relative_l2": 1.32804174810623e-07,
+            "allclose": true,
+            "finite": true
+          },
+          "v": {
+            "max_abs": 9.5367431640625e-07,
+            "relative_l2": 3.696125486258737e-08,
+            "allclose": true,
+            "finite": true
+          }
+        },
+        "status": "passed"
+      },
+      "first_call_wall_seconds": {
+        "numpy": 0.04596845246851444,
+        "jax_cuda_including_compile_and_transfer": 1.0496465396136045
+      },
+      "warmup_count": 2,
+      "repeats": 5,
+      "steady_state_wall_seconds": {
+        "numpy_runs": [
+          0.04556616395711899,
+          0.04721534997224808,
+          0.04528089798986912,
+          0.04499693401157856,
+          0.04506763443350792
+        ],
+        "jax_cuda_runs": [
+          0.00534939207136631,
+          0.0046389903873205185,
+          0.004818491637706757,
+          0.004513446241617203,
+          0.005325030535459518
+        ],
+        "numpy_mean": 0.04562539607286453,
+        "numpy_std": 0.0009159971866362007,
+        "numpy_median": 0.04528089798986912,
+        "jax_cuda_mean": 0.004929070174694061,
+        "jax_cuda_std": 0.0003881276380750529,
+        "jax_cuda_median": 0.004818491637706757,
+        "speedup_mean_ratio": 9.256390040277003,
+        "speedup_median_ratio": 9.397317956417469
+      },
+      "runtime_seconds_from_solver": {
+        "numpy": null,
+        "jax_cuda_first_call": 0.1318683624267578
+      },
+      "jax_allocator_stats_after_grid": {
+        "num_allocs": 103,
+        "bytes_in_use": 0,
+        "peak_bytes_in_use": 67305728,
+        "largest_alloc_size": 33554432,
+        "bytes_limit": 31809601536,
+        "bytes_reserved": 0,
+        "peak_bytes_reserved": 0,
+        "largest_free_block_bytes": 33554432,
+        "pool_bytes": 69206016,
+        "peak_pool_bytes": 69206016
+      },
+      "cuda_memory_after_grid": {
+        "free_bytes": 41991405568,
+        "total_bytes": 42412802048
+      }
+    },
+    {
+      "grid": "256x256",
+      "config": {
+        "kd": 0.36,
+        "k1": 1.35,
+        "b": 8.955223880597014,
+        "k2": 2.0,
+        "rho": 9.0,
+        "cv": 0.1072,
+        "beta": 19.580000000000002,
+        "Du": 0.0085,
+        "Dv": 0.17,
+        "Nx": 256,
+        "Ny": 256,
+        "dx": 0.2,
+        "dy": 0.2,
+        "dt": 0.02,
+        "n_steps": 200,
+        "integrator": "explicit_euler",
+        "boundary": "periodic",
+        "dtype": "float32",
+        "backend": "numpy",
+        "seed": 271828,
+        "snapshot_stride": 0
+      },
+      "same_initial_state_sha256": "09991b285fd2f2c57213d7e3c0cf5d1013694dbd7a674dddaf564ee52badb46b",
+      "parity": {
+        "tolerance": {
+          "rtol": 3e-05,
+          "atol": 2e-06
+        },
+        "fields": {
+          "u": {
+            "max_abs": 1.33514404296875e-05,
+            "relative_l2": 1.3187339699850135e-07,
+            "allclose": true,
+            "finite": true
+          },
+          "v": {
+            "max_abs": 9.5367431640625e-07,
+            "relative_l2": 3.6992843618612387e-08,
+            "allclose": true,
+            "finite": true
+          }
+        },
+        "status": "passed"
+      },
+      "first_call_wall_seconds": {
+        "numpy": 0.15360371954739094,
+        "jax_cuda_including_compile_and_transfer": 0.3139567244797945
+      },
+      "warmup_count": 2,
+      "repeats": 5,
+      "steady_state_wall_seconds": {
+        "numpy_runs": [
+          0.1457480788230896,
+          0.14552847854793072,
+          0.14519205689430237,
+          0.14692947268486023,
+          0.14653498120605946
+        ],
+        "jax_cuda_runs": [
+          0.005460765212774277,
+          0.005091411992907524,
+          0.0053321365267038345,
+          0.005130141973495483,
+          0.005150044336915016
+        ],
+        "numpy_mean": 0.14598661363124849,
+        "numpy_std": 0.0007224605888175034,
+        "numpy_median": 0.1457480788230896,
+        "jax_cuda_mean": 0.005232900008559227,
+        "jax_cuda_std": 0.00015749093028827305,
+        "jax_cuda_median": 0.005150044336915016,
+        "speedup_mean_ratio": 27.897841233821502,
+        "speedup_median_ratio": 28.30035418887204
+      },
+      "runtime_seconds_from_solver": {
+        "numpy": null,
+        "jax_cuda_first_call": 0.10831427574157715
+      },
+      "jax_allocator_stats_after_grid": {
+        "num_allocs": 229,
+        "bytes_in_use": 0,
+        "peak_bytes_in_use": 67896320,
+        "largest_alloc_size": 33554432,
+        "bytes_limit": 31809601536,
+        "bytes_reserved": 0,
+        "peak_bytes_reserved": 0,
+        "largest_free_block_bytes": 33554432,
+        "pool_bytes": 69206016,
+        "peak_pool_bytes": 69206016
+      },
+      "cuda_memory_after_grid": {
+        "free_bytes": 41991405568,
+        "total_bytes": 42412802048
+      }
+    }
+  ],
+  "cuda_memory_after": {
+    "free_bytes": 41991405568,
+    "total_bytes": 42412802048
+  }
+}

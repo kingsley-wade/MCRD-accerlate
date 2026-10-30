@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "experiment": "legacy_opencl_style_random_initial_condition_reproduction",
+  "created_at_utc": "2026-10-30T14:33:27.960345+00:00",
+  "command": [
+    "scripts/reproduce_opencl_style.py",
+    "--backend",
+    "jax-cuda",
+    "--size",
+    "1024",
+    "--domain-length",
+    "25.6",
+    "--final-time",
+    "40",
+    "--dtype",
+    "float32",
+    "--seed",
+    "0",
+    "--output-dir",
+    "/data/250010002/DNA-p53-MCRD-accelerated/reports/opencl-style-1024-reference-init"
+  ],
+  "python": "3.12.16",
+  "numpy": "2.5.4",
+  "platform": "Linux-5.14.0-284.25.1.el9_2.x86_64-x86_64-with-glibc2.35",
+  "backend": "jax-cuda",
+  "device": "cuda:0",
+  "device_kind": "NVIDIA H100 80GB HBM3",
+  "grid": {
+    "Nx": 1024,
+    "Ny": 1024,
+    "Lx": 25.6,
+    "Ly": 25.6,
+    "dx": 0.025,
+    "dy": 0.025
+  },
+  "time": {
+    "target_final_time": 40.0,
+    "actual_final_time": 40.0,
+    "dt": 0.0003125,
+    "steps": 128000,
+    "dt_scaling": "reference_dt * (dx / reference_dx)^2",
+    "reference_dx": 0.2,
+    "reference_dt": 0.02
+  },
+  "model": {
+    "kd": 0.36,
+    "k1": 1.35,
+    "b": 8.955223880597014,
+    "k2": 2.0,
+    "rho": 9.0,
+    "cv": 0.1072,
+    "beta": 19.580000000000002,
+    "Du": 0.0085,
+    "Dv": 0.17,
+    "Nx": 1024,
+    "Ny": 1024,
+    "dx": 0.025,
+    "dy": 0.025,
+    "dt": 0.0003125,
+    "n_steps": 128000,
+    "integrator": "explicit_euler",
+    "boundary": "periodic",
+    "dtype": "float32",
+    "backend": "jax-cuda",
+    "seed": 0,
+    "snapshot_stride": 0
+  },
+  "dtype": "float32",
+  "seed": 0,
+  "initial_condition": "seeded uniform random fields generated at reference size 128\u00b2 (dx=0.2), then nearest-neighbor mapped to 1024\u00b2; u~U(0.25,0.75), v~U(24.5,25.5)",
+  "initial_field_statistics": {
+    "u_mean": 0.5008591413497925,
+    "u_std": 0.14411191642284393,
+    "v_mean": 24.99917221069336,
+    "v_std": 0.2874067425727844
+  },
+  "integrator": "explicit_euler",
+  "boundary": "periodic roll / synchronous out-of-place update",
+  "runtime_seconds": 2.7677874229848385,
+  "final_field_statistics": {
+    "u": {
+      "mean": 18.333354949951172,
+      "std": 1.0045267343521118,
+      "min": 15.023075103759766,
+      "max": 23.272729873657227
+    },
+    "v": {
+      "mean": 7.165399551391602,
+      "std": 0.07838307321071625,
+      "min": 6.763014316558838,
+      "max": 7.407048225402832
+    }
+  },
+  "plot": {
+    "file": "p53-random-speckle-1024-t40.png",
+    "cmap": "viridis",
+    "u_limits": [
+      15.0,
+      23.0
+    ],
+    "v_limits": [
+      6.8,
+      7.4
+    ]
+  },
+  "interpretation": "Reproduces the random-field speckled morphology; not a bitwise replay of the race-prone legacy OpenCL kernel."
+}

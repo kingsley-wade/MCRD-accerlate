@@ -23,13 +23,21 @@ The following release blockers remain:
 - Initial commit `4dbb014` is pushed to `kingsley-wade/MCRD-accerlate` on `main`; the repository is private and the local tree is clean.
 - The GitHub Actions matrix passed on Python 3.11, 3.12, and 3.13. Branch protection is not configured yet.
 - `pyproject.toml` uses `kingsley-wade` as author, declares the target repository URLs, and distinguishes the `mcrd-accel` distribution from the `mcrd_accel` import package.
-- `docs/backend-matrix.md` and `docs/lpp-parity.md` describe current behavior; MATLAB parity and fresh H100 provenance remain open evidence gaps.
+- `docs/backend-matrix.md` and `docs/lpp-parity.md` describe current behavior; MATLAB parity remains open. Fresh bounded H100 MIG evidence is recorded under `reports/h100-validation-20261030/`.
 - `reports/s1_pde_smoke_h100.json` must have its provenance verified before it is presented as hardware evidence. The local host for the current work is Apple Silicon.
 - `reports/opencl_comparison.json` records that no OpenCL reference was supplied; it is not a parity result.
 - The LPP benchmark reports roughly 948 MB of Python-traced peak allocations for a 256 x 256 image. This measurement needs investigation and an OS-level RSS measurement before making bounded-memory or performance claims.
 - The current LPP tests use synthetic cases; MATLAB golden outputs and representative real images have not been supplied.
 - The current benchmark records are local smoke evidence, not stable performance baselines. Their memory method does not include total process RSS or device allocations.
-- Current device evidence is NumPy/JAX CPU on Apple Silicon. The CUDA dependency installation on H100 stalled before device execution. Metal, CUDA/H100, RTX 5090, and Ascend C are not currently validated by this checkout.
+- Current device evidence includes NumPy/JAX CPU on Apple Silicon and a bounded JAX CUDA run on an H100 MIG 3g.40gb slice. Metal, RTX 5090, and Ascend C remain unvalidated by this checkout.
+
+## H100 Evidence Update (2026-10-30)
+
+- Python 3.12.16 and JAX CUDA 0.12.0.1 run from `/data/250010002/DNA-p53-MCRD-accelerated/`; the selected device is `NVIDIA H100 80GB HBM3 MIG 3g.40gb`.
+- The bounded PDE/MCRD smoke passed. Same-input p53 NumPy/CUDA parity passed at 64², 100 steps, float32, `rtol=3e-5`, `atol=2e-6`.
+- At 128² and 256², 200-step p53 workloads measured 9.26× and 27.90× mean NumPy/CUDA ratios after two warmups and five repeats. CUDA timings include transfers; these figures are specific to the recorded MIG run.
+- `nvidia-smi` memory details were unavailable in the container, so the reports use CUDA `cudaMemGetInfo` for free/total memory snapshots. No other process was interrupted.
+- The remote install used the Tsinghua PyPI mirror. `uv sync --locked` reported that `uv.lock` needs an update; the installed versions are recorded in the report, but the lockfile has not yet been refreshed.
 
 ## Remote Access Check (2026-10-28)
 

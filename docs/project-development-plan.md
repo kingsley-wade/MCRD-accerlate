@@ -22,7 +22,7 @@ The release is ready to feature on a resume when all of the following are true:
 
 ## Current Snapshot
 
-Observed on 2026-10-28:
+Baseline snapshot observed on 2026-10-28:
 
 - Implementation exists for the NumPy reference path, JAX MCRD/PDE paths, and NumPy LPP pipeline.
 - The local Apple Silicon test suite passes: 146 tests after the current fixes.
@@ -32,10 +32,18 @@ Observed on 2026-10-28:
 - The older CUDA artifact is labeled `jax-cuda` but has no host/device/JAX provenance. Do not use it as attributable H100 evidence.
 - The full source, tests, documentation, specs, and reports are uploaded under `/mnt/afs/gmt/DNA-p53-MCRD-accelerated`; the upload archive is `/mnt/afs/gmt/DNA-p53-MCRD-accelerated-full-project.tgz`. The isolated environment and uv cache are also targeted to `/mnt/afs/gmt`.
 - The remote host is Ubuntu 22.04 x86_64 with eight NVIDIA H100 80 GB devices. At the latest check, each had about 29 GiB free and 52 GiB used by other jobs. Do not terminate or compete aggressively with those jobs.
-- The remote base Python is 3.10, below the project minimum. Python 3.12 and `uv` are available. `uv sync --locked --extra jax-cuda --python 3.12` resolved and began downloading the locked CUDA stack, but made negligible progress for more than ten minutes; the process was stopped. The CUDA environment is incomplete and no new H100 result has been generated.
+- At that snapshot, the remote base Python was 3.10, below the project minimum. The stalled CUDA install was subsequently replaced by a Python 3.12 environment under `/data/250010002/`.
 - `/mnt/afs` showed about 87 GiB free at the latest check. There are no visible Slurm commands in this account/session.
 - Initial commit `4dbb014` is pushed to `https://github.com/kingsley-wade/MCRD-accerlate` on `main`. The repository is private, the local working tree is clean, and the first hosted CI run passed on Python 3.11, 3.12, and 3.13.
 - Author metadata now uses `kingsley-wade`; an MIT license, `.gitignore`, CI workflow, templates, contribution guide, backend matrix, LPP behavior guide, and release roadmap have been added locally.
+
+## H100 update (2026-10-30)
+
+- Python 3.12.16 and the project environment are installed under `/data/250010002/DNA-p53-MCRD-accelerated/`; JAX CUDA 0.12.0.1 selects `NVIDIA H100 80GB HBM3 MIG 3g.40gb`.
+- The 16/32-grid CUDA smoke completed for heat, periodic Poisson, wave, and p53 MCRD. A 64² p53 run passed same-input NumPy parity at `rtol=3e-5, atol=2e-6`.
+- A 128²/256² p53 benchmark used float32, 200 steps, two warmups, and five repeats. Mean NumPy/CUDA ratios were 9.26× and 27.90× on this single MIG slice. See `reports/h100-validation-20261030/` and `docs/h100-validation.md` for timing, memory, and provenance limits.
+- `nvidia-smi` denied memory-detail queries; free memory was measured with CUDA `cudaMemGetInfo`. The run did not interrupt other processes.
+- `uv sync --locked` reported that the current lockfile needs an update. The working GPU environment was installed through the Tsinghua PyPI mirror; the repository lockfile remains a follow-up reproducibility item.
 
 ## Known Bugs and Risks
 
@@ -48,7 +56,7 @@ Observed on 2026-10-28:
 ### Still open
 
 - **LPP peak memory needs a valid measurement.** The current `tracemalloc` report shows about 948 MB for a 256 x 256 float64 image with batch size 64. Profile with process RSS and vary batch size before making a bounded-memory or throughput claim. The implementation bounds FFT batches but keeps per-window metric arrays until merge.
-- **H100 report provenance is incomplete.** The previous CUDA dependency installation stalled against the package index. Retry the isolated install in `/mnt/afs/gmt` when package downloads are viable, then generate a new report with device/runtime metadata. The GPU is shared and already heavily allocated; run a small smoke case only after checking available memory.
+- **H100 evidence is bounded to one MIG slice and two small benchmark grids.** It does not establish production-scale stability or general H100 performance. The `uv.lock` also needs updating before the CUDA environment can be recreated with `uv sync --locked`.
 - **LPP MATLAB parity lacks golden fixtures.** The current tests establish synthetic behavior, not exact parity on experimental images.
 - **OpenCL comparison has no reference output.** Keep it labeled un-compared until a checkpoint is supplied.
 - **Package names intentionally differ.** The distribution is `mcrd-accel`, the import package is `mcrd_accel`, and the GitHub repository is `MCRD-accerlate`; the README and package metadata document these names.
@@ -74,13 +82,13 @@ Goal: make the actual code migration easy to understand and reproduce.
 ### Phase B: Correctness and Resource Evidence
 
 - [ ] B1. Regenerate the local reports after the Poisson `iterations=None` change; confirm JSON uses `null` and no prior `-1` result is described as current.
-- [ ] B2. Complete the H100 environment setup in `/mnt/afs/gmt/DNA-p53-MCRD-accelerated/.venv`. Resolve the stalled CUDA package download, then confirm `jax.devices("gpu")`, exact device kind, JAX/jaxlib versions, driver/runtime, and one device selection. Follow [H100 validation](h100-validation.md).
-- [ ] B3. Run only the 16/32 grid canonical PDE smoke and a short MCRD smoke on one H100 after checking free VRAM. Do not run the full 4096 grid or a throughput sweep while shared allocations remain high.
-- [ ] B4. Save a new H100 JSON report with timestamp, host, GPU model, device index, free/used VRAM before and after, driver, Python, JAX/jaxlib, config, and all result metrics. Replace or clearly archive the provenance-incomplete report.
-- [ ] B5. Compare JAX CUDA outputs with NumPy on the exact same inputs and tolerances. Report which equations and cases were exercised.
+- [x] B2. Install the H100 environment under `/data/250010002/`; confirm the selected device, JAX/jaxlib versions, driver/runtime, and explicit CUDA routing. Follow [H100 validation](h100-validation.md).
+- [x] B3. Run the 16/32 grid canonical PDE and short MCRD smoke on one H100 MIG after checking free memory. Do not run the full 4096 grid or a broad throughput sweep on the shared device.
+- [x] B4. Save timestamped H100 JSON reports with source revision, device/runtime, configuration, metrics, and CUDA memory snapshots. Preserve the older provenance-incomplete report as historical evidence.
+- [x] B5. Compare JAX CUDA outputs with NumPy on identical p53 inputs using explicit tolerances; record the tested PDE/MCRD cases.
 - [ ] B6. Add a process RSS measurement to MCRD/LPP benchmark records. Clearly separate RSS, Python allocator, and accelerator memory.
 - [ ] B7. Profile LPP by stage and test at least two batch sizes. Fix avoidable copies or reduce the default batch if evidence shows it materially lowers peak memory without unacceptable throughput loss.
-- [ ] B8. Keep the performance comparison reproducible and modest: same input/config, warmup separated, multiple repeats, device and runtime metadata included.
+- [x] B8. Run a modest, reproducible same-input performance comparison with warmup separated, five timed repeats, and device/runtime metadata. Results are limited to the recorded 128² and 256² workloads.
 
 **Acceptance:** the H100 report is attributable and repeatable; LPP memory claims match RSS measurements; no shared processes were disturbed.
 

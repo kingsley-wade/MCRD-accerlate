@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-10-30T08:34:39.704594+00:00",
+  "benchmark": "matched_p53_jax_backend_short_run",
+  "backend": "jax-cpu",
+  "python": "3.12.16",
+  "numpy": "2.5.4",
+  "jax": "0.12.0.1",
+  "jaxlib": "0.12.0.1",
+  "jax_enable_x64": true,
+  "device": "cpu:0",
+  "device_kind": "cpu",
+  "platform": "Linux-5.14.0-284.25.1.el9_2.x86_64-x86_64-with-glibc2.35",
+  "cpu_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "cpu_affinity_count": 8,
+  "cpu_threads_requested": 8,
+  "physical_domain": {
+    "Lx": 25.6,
+    "Ly": 25.6
+  },
+  "grid_sizes": [
+    64,
+    128,
+    256,
+    512,
+    1024,
+    2048,
+    4096
+  ],
+  "dtype": "float64",
+  "integrator": "explicit_euler",
+  "boundary": "periodic",
+  "dt": 2.8722426470588238e-05,
+  "dt_rule": "0.5 * dx_4096^2 / (4 * Dv), with Dv=0.17",
+  "steps_per_grid": 10240,
+  "simulated_time_per_grid": 0.29411764705882354,
+  "seed": 2026,
+  "initial_condition": "same seeded smooth periodic six-mode field as the fixed-time p53 study",
+  "warmups": 1,
+  "timed_repeats": 3
+}
