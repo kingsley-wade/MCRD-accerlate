@@ -117,6 +117,8 @@ This is a matched short-run benchmark, not a full t=40 workflow timing. The [run
 
 The original OpenCL notebook recorded 168.1 seconds on an Apple M2 Ultra at 256². That historical run is not directly comparable to the JAX CPU/H100 table: its step count, spacing, dtype, device, and update behavior differ. The 1024² JAX CUDA figure below reproduces a similar random-field morphology; the [migration guide](docs/opencl-migration-guide.md) explains the configuration mapping.
 
+The original non-accelerated Fig. 2b notebook and OpenCL helper are preserved under [`legacy/structure-2025-fig2b/`](legacy/structure-2025-fig2b/), with attribution to the 2025 *Structure* paper and source repository. Their original notices and licensing status are documented there; the root MIT license does not relicense those files.
+
 | Runtime reference | Grid and updates | Time | Evidence |
 | --- | --- | ---: | --- |
 | OpenCL, Apple M2 Ultra | 256², 1,484,901 kernel launches | 168.1 s | One recorded run |
